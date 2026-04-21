@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./mvnw spring-boot:run)",
+      "Bash(PGPASSWORD=\"Athiya@123\" psql -h localhost -U postgres -d roadsafety_db -f \"c:/Users/Dell/Desktop/RoadSafety/vanet-backend/schema.sql\")",
+      "Bash(taskkill /F /IM java.exe)"
+    ]
+  }
+}
