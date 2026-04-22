@@ -634,7 +634,7 @@ void main() {
       fail('animation was null!');
     }
 
-    final firstCurvedAnimation = firstAnimation! as CurvedAnimation;
+    final firstCurvedAnimation = firstAnimation as CurvedAnimation;
 
     expect(firstCurvedAnimation.isDisposed, isFalse);
 
@@ -647,7 +647,7 @@ void main() {
       fail('animation was null!');
     }
 
-    final secondCurvedAnimation = secondAnimation! as CurvedAnimation;
+    final secondCurvedAnimation = secondAnimation as CurvedAnimation;
 
     expect(firstState, equals(secondState));
     expect(firstAnimation, isNot(equals(secondAnimation)));

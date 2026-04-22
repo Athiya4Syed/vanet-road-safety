@@ -185,7 +185,7 @@ abstract class RenderDecoratedSector extends RenderSector {
 
     if (_decoration!.color != null) {
       final Canvas canvas = context.canvas;
-      final paint = Paint()..color = _decoration!.color;
+      final paint = Paint()..color = _decoration!.color!;
       final path = Path();
       final double outerRadius = parentData!.radius + deltaRadius;
       final outerBounds = Rect.fromLTRB(

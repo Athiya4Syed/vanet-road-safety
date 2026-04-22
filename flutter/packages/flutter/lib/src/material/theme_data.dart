@@ -1863,7 +1863,7 @@ class ThemeData with Diagnosticable {
             backgroundColor: systemColors.buttonFace.value,
             side: systemColors.buttonBorder.value == null
                 ? null
-                : BorderSide(color: systemColors.buttonBorder.value),
+                : BorderSide(color: systemColors.buttonBorder.value!),
           ),
         ),
         textButtonTheme: TextButtonThemeData(
@@ -1872,7 +1872,7 @@ class ThemeData with Diagnosticable {
             backgroundColor: systemColors.buttonFace.value,
             side: systemColors.buttonBorder.value == null
                 ? null
-                : BorderSide(color: systemColors.buttonBorder.value),
+                : BorderSide(color: systemColors.buttonBorder.value!),
           ),
         ),
         outlinedButtonTheme: OutlinedButtonThemeData(
@@ -1881,7 +1881,7 @@ class ThemeData with Diagnosticable {
             backgroundColor: systemColors.buttonFace.value,
             side: systemColors.buttonBorder.value == null
                 ? null
-                : BorderSide(color: systemColors.buttonBorder.value),
+                : BorderSide(color: systemColors.buttonBorder.value!),
           ),
         ),
         filledButtonTheme: FilledButtonThemeData(
@@ -1890,7 +1890,7 @@ class ThemeData with Diagnosticable {
             backgroundColor: systemColors.buttonFace.value,
             side: systemColors.buttonBorder.value == null
                 ? null
-                : BorderSide(color: systemColors.buttonBorder.value),
+                : BorderSide(color: systemColors.buttonBorder.value!),
           ),
         ),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -1961,23 +1961,23 @@ class ThemeData with Diagnosticable {
       useMaterial3: t < 0.5 ? a.useMaterial3 : b.useMaterial3,
       visualDensity: VisualDensity.lerp(a.visualDensity, b.visualDensity, t),
       // COLOR
-      canvasColor: Color.lerp(a.canvasColor, b.canvasColor, t),
-      cardColor: Color.lerp(a.cardColor, b.cardColor, t),
+      canvasColor: Color.lerp(a.canvasColor, b.canvasColor, t)!,
+      cardColor: Color.lerp(a.cardColor, b.cardColor, t)!,
       colorScheme: ColorScheme.lerp(a.colorScheme, b.colorScheme, t),
-      disabledColor: Color.lerp(a.disabledColor, b.disabledColor, t),
-      dividerColor: Color.lerp(a.dividerColor, b.dividerColor, t),
-      focusColor: Color.lerp(a.focusColor, b.focusColor, t),
-      highlightColor: Color.lerp(a.highlightColor, b.highlightColor, t),
-      hintColor: Color.lerp(a.hintColor, b.hintColor, t),
-      hoverColor: Color.lerp(a.hoverColor, b.hoverColor, t),
-      primaryColor: Color.lerp(a.primaryColor, b.primaryColor, t),
-      primaryColorDark: Color.lerp(a.primaryColorDark, b.primaryColorDark, t),
-      primaryColorLight: Color.lerp(a.primaryColorLight, b.primaryColorLight, t),
-      scaffoldBackgroundColor: Color.lerp(a.scaffoldBackgroundColor, b.scaffoldBackgroundColor, t),
-      secondaryHeaderColor: Color.lerp(a.secondaryHeaderColor, b.secondaryHeaderColor, t),
-      shadowColor: Color.lerp(a.shadowColor, b.shadowColor, t),
-      splashColor: Color.lerp(a.splashColor, b.splashColor, t),
-      unselectedWidgetColor: Color.lerp(a.unselectedWidgetColor, b.unselectedWidgetColor, t),
+      disabledColor: Color.lerp(a.disabledColor, b.disabledColor, t)!,
+      dividerColor: Color.lerp(a.dividerColor, b.dividerColor, t)!,
+      focusColor: Color.lerp(a.focusColor, b.focusColor, t)!,
+      highlightColor: Color.lerp(a.highlightColor, b.highlightColor, t)!,
+      hintColor: Color.lerp(a.hintColor, b.hintColor, t)!,
+      hoverColor: Color.lerp(a.hoverColor, b.hoverColor, t)!,
+      primaryColor: Color.lerp(a.primaryColor, b.primaryColor, t)!,
+      primaryColorDark: Color.lerp(a.primaryColorDark, b.primaryColorDark, t)!,
+      primaryColorLight: Color.lerp(a.primaryColorLight, b.primaryColorLight, t)!,
+      scaffoldBackgroundColor: Color.lerp(a.scaffoldBackgroundColor, b.scaffoldBackgroundColor, t)!,
+      secondaryHeaderColor: Color.lerp(a.secondaryHeaderColor, b.secondaryHeaderColor, t)!,
+      shadowColor: Color.lerp(a.shadowColor, b.shadowColor, t)!,
+      splashColor: Color.lerp(a.splashColor, b.splashColor, t)!,
+      unselectedWidgetColor: Color.lerp(a.unselectedWidgetColor, b.unselectedWidgetColor, t)!,
       // TYPOGRAPHY & ICONOGRAPHY
       iconTheme: IconThemeData.lerp(a.iconTheme, b.iconTheme, t),
       primaryIconTheme: IconThemeData.lerp(a.primaryIconTheme, b.primaryIconTheme, t),
@@ -2081,8 +2081,8 @@ class ThemeData with Diagnosticable {
       tooltipTheme: TooltipThemeData.lerp(a.tooltipTheme, b.tooltipTheme, t)!,
       // DEPRECATED (newest deprecations at the bottom)
       buttonBarTheme: ButtonBarThemeData.lerp(a.buttonBarTheme, b.buttonBarTheme, t),
-      dialogBackgroundColor: Color.lerp(a.dialogBackgroundColor, b.dialogBackgroundColor, t),
-      indicatorColor: Color.lerp(a.indicatorColor, b.indicatorColor, t),
+      dialogBackgroundColor: Color.lerp(a.dialogBackgroundColor, b.dialogBackgroundColor, t)!,
+      indicatorColor: Color.lerp(a.indicatorColor, b.indicatorColor, t)!,
     );
   }
 

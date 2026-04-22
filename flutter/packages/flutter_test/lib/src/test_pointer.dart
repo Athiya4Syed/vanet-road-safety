@@ -140,7 +140,7 @@ class TestPointer {
       kind: kind,
       device: _device,
       pointer: pointer,
-      position: location,
+      position: location!,
       buttons: _buttons,
     );
   }
@@ -201,7 +201,7 @@ class TestPointer {
       kind: kind,
       device: _device,
       pointer: pointer,
-      position: location,
+      position: location!,
     );
   }
 
@@ -220,7 +220,7 @@ class TestPointer {
       kind: kind,
       device: _device,
       pointer: pointer,
-      position: location,
+      position: location!,
     );
   }
 
@@ -313,7 +313,7 @@ class TestPointer {
       timeStamp: timeStamp,
       kind: kind,
       device: _device,
-      position: location,
+      position: location!,
       scrollDelta: scrollDelta,
       onRespond: onRespond,
     );
@@ -334,7 +334,7 @@ class TestPointer {
       timeStamp: timeStamp,
       kind: kind,
       device: _device,
-      position: location,
+      position: location!,
     );
   }
 
@@ -350,7 +350,7 @@ class TestPointer {
       timeStamp: timeStamp,
       kind: kind,
       device: _device,
-      position: location,
+      position: location!,
       scale: scale,
     );
   }
@@ -427,7 +427,7 @@ class TestPointer {
       timeStamp: timeStamp,
       device: _device,
       pointer: pointer,
-      position: location,
+      position: location!,
     );
   }
 }
@@ -543,7 +543,7 @@ class TestGesture {
     assert(_pointer.location != null);
     if (_pointer.isPanZoomActive) {
       return panZoomUpdate(
-        _pointer.location,
+        _pointer.location!,
         pan: (_pointer.pan ?? Offset.zero) + offset,
         timeStamp: timeStamp,
         view: view,

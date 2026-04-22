@@ -144,4 +144,8 @@ class _MultiDragPointerState extends MultiDragPointerState {
   @override
   void accepted(GestureMultiDragStartCallback starter) {}
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
 }

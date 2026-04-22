@@ -649,6 +649,8 @@ class LeakCheckerHandle with ChangeNotifier {
     }
   }
 
+  @override
+  bool get hasListeners => super.hasListeners;
 }
 
 class KeepAliveListenableLeakChecker extends StatefulWidget {

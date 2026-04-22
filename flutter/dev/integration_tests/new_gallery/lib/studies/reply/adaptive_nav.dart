@@ -40,6 +40,10 @@ class AdaptiveNav extends StatefulWidget {
 }
 
 class _AdaptiveNavState extends State<AdaptiveNav> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -167,7 +171,7 @@ class _DesktopNavState extends State<_DesktopNav> with SingleTickerProviderState
                   ) {
                     return destination.type == model.selectedMailboxPage;
                   });
-                  return ColoredBox(
+                  return Container(
                     color: Theme.of(context).navigationRailTheme.backgroundColor,
                     child: SingleChildScrollView(
                       clipBehavior: Clip.antiAlias,

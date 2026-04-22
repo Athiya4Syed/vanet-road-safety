@@ -520,8 +520,8 @@ class RectangularRangeSliderTrackShape extends RangeSliderTrackShape
       begin: sliderTheme.disabledInactiveTrackColor,
       end: sliderTheme.inactiveTrackColor,
     );
-    final activePaint = Paint()..color = activeTrackColorTween.evaluate(enableAnimation!);
-    final inactivePaint = Paint()..color = inactiveTrackColorTween.evaluate(enableAnimation);
+    final activePaint = Paint()..color = activeTrackColorTween.evaluate(enableAnimation!)!;
+    final inactivePaint = Paint()..color = inactiveTrackColorTween.evaluate(enableAnimation)!;
 
     final (Offset leftThumbOffset, Offset rightThumbOffset) = switch (textDirection) {
       TextDirection.ltr => (startThumbCenter, endThumbCenter),
@@ -633,8 +633,8 @@ class RoundedRectRangeSliderTrackShape extends RangeSliderTrackShape
       begin: sliderTheme.disabledInactiveTrackColor,
       end: sliderTheme.inactiveTrackColor,
     );
-    final activePaint = Paint()..color = activeTrackColorTween.evaluate(enableAnimation);
-    final inactivePaint = Paint()..color = inactiveTrackColorTween.evaluate(enableAnimation);
+    final activePaint = Paint()..color = activeTrackColorTween.evaluate(enableAnimation)!;
+    final inactivePaint = Paint()..color = inactiveTrackColorTween.evaluate(enableAnimation)!;
 
     final (Offset leftThumbOffset, Offset rightThumbOffset) = switch (textDirection) {
       TextDirection.ltr => (startThumbCenter, endThumbCenter),
@@ -759,7 +759,7 @@ class RoundRangeSliderTickMarkShape extends RangeSliderTickMarkShape {
     final Color? end = isBetweenThumbs
         ? sliderTheme.activeTickMarkColor
         : sliderTheme.inactiveTickMarkColor;
-    final paint = Paint()..color = ColorTween(begin: begin, end: end).evaluate(enableAnimation);
+    final paint = Paint()..color = ColorTween(begin: begin, end: end).evaluate(enableAnimation)!;
 
     // The tick marks are tiny circles that are the same height as the track.
     final double tickMarkRadius =
@@ -846,13 +846,13 @@ class RoundRangeSliderThumbShape extends RangeSliderThumbShape {
     // the other thumb.
     if (isOnTop ?? false) {
       final strokePaint = Paint()
-        ..color = sliderTheme.overlappingShapeStrokeColor
+        ..color = sliderTheme.overlappingShapeStrokeColor!
         ..strokeWidth = 1.0
         ..style = PaintingStyle.stroke;
       canvas.drawCircle(center, radius, strokePaint);
     }
 
-    final Color color = colorTween.evaluate(enableAnimation);
+    final Color color = colorTween.evaluate(enableAnimation)!;
 
     final double evaluatedElevation = isPressed!
         ? elevationTween.evaluate(activationAnimation)
@@ -1049,8 +1049,8 @@ class GappedRangeSliderTrackShape extends RangeSliderTrackShape with BaseRangeSl
       end: sliderTheme.inactiveTrackColor,
     );
 
-    final activePaint = Paint()..color = activeTrackColorTween.evaluate(enableAnimation);
-    final inactivePaint = Paint()..color = inactiveTrackColorTween.evaluate(enableAnimation);
+    final activePaint = Paint()..color = activeTrackColorTween.evaluate(enableAnimation)!;
+    final inactivePaint = Paint()..color = inactiveTrackColorTween.evaluate(enableAnimation)!;
 
     final Rect trackRect = getPreferredRect(
       parentBox: parentBox,
@@ -1219,12 +1219,12 @@ class HandleRangeSliderThumbShape extends RangeSliderThumbShape {
       begin: sliderTheme.disabledThumbColor,
       end: sliderTheme.thumbColor,
     );
-    final Color color = colorTween.evaluate(enableAnimation);
+    final Color color = colorTween.evaluate(enableAnimation)!;
     final Canvas canvas = context.canvas;
 
     final Size thumbSize = sliderTheme.thumbSize!.resolve(
       <WidgetState>{},
-    ); // This is resolved in the paint method.
+    )!; // This is resolved in the paint method.
     final rrect = RRect.fromRectAndRadius(
       Rect.fromCenter(center: center, width: thumbSize.width, height: thumbSize.height),
       Radius.circular(thumbSize.shortestSide / 2),
@@ -1304,8 +1304,8 @@ class RoundedRectRangeSliderValueIndicatorShape extends RangeSliderValueIndicato
       scale: scale,
       labelPainter: labelPainter,
       textScaleFactor: textScaleFactor!,
-      sizeWithOverflow: sizeWithOverflow,
-      backgroundPaintColor: sliderTheme.valueIndicatorColor,
+      sizeWithOverflow: sizeWithOverflow!,
+      backgroundPaintColor: sliderTheme.valueIndicatorColor!,
       strokePaintColor: isOnTop!
           ? sliderTheme.overlappingShapeStrokeColor
           : sliderTheme.valueIndicatorStrokeColor,
@@ -1376,8 +1376,8 @@ class DropRangeSliderValueIndicatorShape extends RangeSliderValueIndicatorShape 
       scale: scale,
       labelPainter: labelPainter,
       textScaleFactor: textScaleFactor!,
-      sizeWithOverflow: sizeWithOverflow,
-      backgroundPaintColor: sliderTheme.valueIndicatorColor,
+      sizeWithOverflow: sizeWithOverflow!,
+      backgroundPaintColor: sliderTheme.valueIndicatorColor!,
       strokePaintColor: isOnTop!
           ? sliderTheme.overlappingShapeStrokeColor
           : sliderTheme.valueIndicatorStrokeColor,

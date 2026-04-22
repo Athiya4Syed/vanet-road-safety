@@ -2500,7 +2500,7 @@ class _ColorSwatchMatcher<T> extends Matcher {
       }
 
       for (final T key in _target.keys) {
-        final matcher = _ColorMatcher(_target[key], _threshold);
+        final matcher = _ColorMatcher(_target[key]!, _threshold);
         if (!matcher.matches(item[key], matchState)) {
           return false;
         }

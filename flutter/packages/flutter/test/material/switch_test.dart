@@ -4438,6 +4438,15 @@ class _TestImageProvider extends ImageProvider<Object> {
     return SynchronousFuture<_TestImageProvider>(this);
   }
 
+  @override
+  void resolveStreamForKey(
+    ImageConfiguration configuration,
+    ImageStream stream,
+    Object key,
+    ImageErrorListener handleError,
+  ) {
+    super.resolveStreamForKey(configuration, stream, key, handleError);
+  }
 
   @override
   ImageStreamCompleter loadImage(Object key, ImageDecoderCallback decode) {

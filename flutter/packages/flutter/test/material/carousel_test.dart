@@ -1707,7 +1707,7 @@ void main() {
             itemCount: 1000,
             itemBuilder: (BuildContext context, int index) {
               builtItems.add(index);
-              return ColoredBox(
+              return Container(
                 color: Colors.blue[index % 9 * 100],
                 child: Center(child: Text('Item $index')),
               );
@@ -1867,7 +1867,7 @@ void main() {
               itemCount: 1000,
               itemBuilder: (BuildContext context, int index) {
                 builtItems.add(index);
-                return ColoredBox(
+                return Container(
                   color: Colors.blue[index % 9 * 100],
                   child: Center(child: Text('Item $index')),
                 );

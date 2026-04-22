@@ -906,7 +906,7 @@ class RenderCustomPaint extends RenderProxyBox {
     final SemanticsProperties properties = newSemantics.properties;
     final config = SemanticsConfiguration();
     if (properties.role != null) {
-      config.role = properties.role;
+      config.role = properties.role!;
     }
     if (properties.sortKey != null) {
       config.sortKey = properties.sortKey;
@@ -1044,10 +1044,10 @@ class RenderCustomPaint extends RenderProxyBox {
       config.validationResult = properties.validationResult;
     }
     if (properties.hitTestBehavior != null) {
-      config.hitTestBehavior = properties.hitTestBehavior;
+      config.hitTestBehavior = properties.hitTestBehavior!;
     }
     if (properties.inputType != null) {
-      config.inputType = properties.inputType;
+      config.inputType = properties.inputType!;
     }
     if (properties.minValue != null) {
       config.minValue = properties.minValue;

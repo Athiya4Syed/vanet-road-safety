@@ -428,6 +428,10 @@ class TestRenderSliverFixedExtentBoxAdaptor extends RenderSliverFixedExtentBoxAd
 
   final double _itemExtent;
 
+  @override
+  int getMaxChildIndexForScrollOffset(double scrollOffset, double itemExtent) {
+    return super.getMaxChildIndexForScrollOffset(scrollOffset, itemExtent);
+  }
 
   @override
   double get itemExtent => _itemExtent;

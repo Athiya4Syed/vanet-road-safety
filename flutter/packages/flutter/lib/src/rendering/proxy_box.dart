@@ -1220,7 +1220,7 @@ class RenderBackdropFilter extends RenderProxyBox {
          filter == null || filterConfig == null,
          'Cannot provide both a filter and a filterConfig.',
        ),
-       _filterConfig = filterConfig ?? ImageFilterConfig(filter),
+       _filterConfig = filterConfig ?? ImageFilterConfig(filter!),
        _enabled = enabled,
        _blendMode = blendMode,
        _backdropKey = backdropKey,
@@ -1644,7 +1644,7 @@ class RenderClipRect extends _RenderCustomClip<Rect> {
         layer = context.pushClipRect(
           needsCompositing,
           offset,
-          _clip,
+          _clip!,
           super.paint,
           clipBehavior: clipBehavior,
           oldLayer: layer as ClipRectLayer?,
@@ -1750,7 +1750,7 @@ class RenderClipRRect extends _RenderCustomClip<RRect> {
           needsCompositing,
           offset,
           _clip!.outerRect,
-          _clip,
+          _clip!,
           super.paint,
           clipBehavior: clipBehavior,
           oldLayer: layer as ClipRRectLayer?,
@@ -1857,7 +1857,7 @@ class RenderClipRSuperellipse extends _RenderCustomClip<RSuperellipse> {
           needsCompositing,
           offset,
           _clip!.outerRect,
-          _clip,
+          _clip!,
           super.paint,
           clipBehavior: clipBehavior,
           oldLayer: layer as ClipRSuperellipseLayer?,
@@ -1943,8 +1943,8 @@ class RenderClipOval extends _RenderCustomClip<Rect> {
         layer = context.pushClipPath(
           needsCompositing,
           offset,
-          _clip,
-          _getClipPath(_clip),
+          _clip!,
+          _getClipPath(_clip!),
           super.paint,
           clipBehavior: clipBehavior,
           oldLayer: layer as ClipPathLayer?,
@@ -1964,7 +1964,7 @@ class RenderClipOval extends _RenderCustomClip<Rect> {
       if (child != null) {
         super.debugPaintSize(context, offset);
         if (clipBehavior != Clip.none) {
-          context.canvas.drawPath(_getClipPath(_clip).shift(offset), _debugPaint!);
+          context.canvas.drawPath(_getClipPath(_clip!).shift(offset), _debugPaint!);
           _debugText!.paint(
             context.canvas,
             offset +
@@ -2026,7 +2026,7 @@ class RenderClipPath extends _RenderCustomClip<Path> {
           needsCompositing,
           offset,
           Offset.zero & size,
-          _clip,
+          _clip!,
           super.paint,
           clipBehavior: clipBehavior,
           oldLayer: layer as ClipPathLayer?,
@@ -2240,7 +2240,7 @@ class RenderPhysicalModel extends _RenderPhysicalModelBase<RRect> {
       needsCompositing,
       offset,
       Offset.zero & size,
-      _clip,
+      _clip!,
       (PaintingContext context, Offset offset) {
         if (usesSaveLayer) {
           // If we want to avoid the bleeding edge artifact
@@ -2345,7 +2345,7 @@ class RenderPhysicalShape extends _RenderPhysicalModelBase<Path> {
       needsCompositing,
       offset,
       Offset.zero & size,
-      _clip,
+      _clip!,
       (PaintingContext context, Offset offset) {
         if (usesSaveLayer) {
           // If we want to avoid the bleeding edge artifact
@@ -2734,7 +2734,7 @@ class RenderTransform extends RenderProxyBox {
   @override
   void paint(PaintingContext context, Offset offset) {
     if (child != null) {
-      final Matrix4 transform = _effectiveTransform;
+      final Matrix4 transform = _effectiveTransform!;
       if (filterQuality == null) {
         final Offset? childOffset = MatrixUtils.getAsTranslation(transform);
         if (childOffset == null) {
@@ -2991,12 +2991,12 @@ class RenderFittedBox extends RenderProxyBox {
   }
 
   TransformLayer? _paintChildWithTransform(PaintingContext context, Offset offset) {
-    final Offset? childOffset = MatrixUtils.getAsTranslation(_transform);
+    final Offset? childOffset = MatrixUtils.getAsTranslation(_transform!);
     if (childOffset == null) {
       return context.pushTransform(
         needsCompositing,
         offset,
-        _transform,
+        _transform!,
         super.paint,
         oldLayer: layer is TransformLayer ? layer! as TransformLayer : null,
       );

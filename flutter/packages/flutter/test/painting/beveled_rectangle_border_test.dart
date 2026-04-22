@@ -23,7 +23,7 @@ void main() {
     const directionalRadius = BorderRadiusDirectional.all(Radius.circular(16.0));
     expect(
       const BeveledRectangleBorder().copyWith(side: side, borderRadius: radius),
-      const BeveledRectangleBorder(side: side),
+      const BeveledRectangleBorder(side: side, borderRadius: radius),
     );
 
     expect(
@@ -118,12 +118,15 @@ void main() {
     const borderRadius = BorderRadius.all(Radius.circular(10));
     const inside = BeveledRectangleBorder(
       side: BorderSide(width: 10.0),
+      borderRadius: borderRadius,
     );
     const center = BeveledRectangleBorder(
       side: BorderSide(width: 10.0, strokeAlign: BorderSide.strokeAlignCenter),
+      borderRadius: borderRadius,
     );
     const outside = BeveledRectangleBorder(
       side: BorderSide(width: 10.0, strokeAlign: BorderSide.strokeAlignOutside),
+      borderRadius: borderRadius,
     );
     expect(inside.dimensions, const EdgeInsets.all(10.0));
     expect(center.dimensions, const EdgeInsets.all(5.0));

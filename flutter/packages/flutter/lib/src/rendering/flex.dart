@@ -987,7 +987,7 @@ class RenderFlex extends RenderBox
       if (childBaseline != null) {
         // Calculate cross-axis position to match performLayout exactly
         final double? childBaselineOffset = _isBaselineAligned && textBaseline != null
-            ? child.getDryBaseline(childConstraints, textBaseline)
+            ? child.getDryBaseline(childConstraints, textBaseline!)
             : null;
         final bool baselineAlign = baselineOffset != null && childBaselineOffset != null;
 
@@ -1361,7 +1361,7 @@ class RenderFlex extends RenderBox
       final double? childBaselineOffset;
       final bool baselineAlign =
           baselineOffset != null &&
-          (childBaselineOffset = child.getDistanceToBaseline(textBaseline, onlyReal: true)) !=
+          (childBaselineOffset = child.getDistanceToBaseline(textBaseline!, onlyReal: true)) !=
               null;
       final double childCrossPosition;
       if (baselineAlign) {

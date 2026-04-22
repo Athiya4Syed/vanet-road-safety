@@ -738,7 +738,7 @@ class BackdropFilter extends SingleChildRenderObjectWidget {
   }
 
   ImageFilterConfig get _effectiveFilterConfig {
-    return filterConfig ?? ImageFilterConfig(filter);
+    return filterConfig ?? ImageFilterConfig(filter!);
   }
 
   @override

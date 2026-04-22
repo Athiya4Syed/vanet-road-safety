@@ -88,7 +88,7 @@ void main() {
   });
 
   testWidgets('listens to AppLifecycleState', (WidgetTester tester) async {
-    final states = <AppLifecycleState>[tester.binding.lifecycleState];
+    final states = <AppLifecycleState>[tester.binding.lifecycleState!];
     void stateChange(AppLifecycleState state) {
       states.add(state);
     }

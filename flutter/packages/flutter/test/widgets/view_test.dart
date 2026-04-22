@@ -445,7 +445,7 @@ void main() {
     WidgetTester tester,
   ) async {
     const physicalSize = Size(300, 600);
-    const Size logicalSize = physicalSize / tester.view.devicePixelRatio;
+    final Size logicalSize = physicalSize / tester.view.devicePixelRatio;
     tester.view.physicalConstraints = ViewConstraints.tight(physicalSize);
     await tester.pumpWidget(const Placeholder());
 

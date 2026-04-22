@@ -2844,7 +2844,7 @@ void main() {
                   child: ListView(
                     children: <Widget>[
                       // Clips OverlayPortal, making it only half visible.
-                      const SizedBox(height: TestSemantics.fullScreen.height - 5),
+                      SizedBox(height: TestSemantics.fullScreen.height - 5),
                       Semantics(
                         container: true,
                         explicitChildNodes: true,
@@ -2910,7 +2910,7 @@ void main() {
                   child: ListView(
                     children: <Widget>[
                       // Clips OverlayPortal, making it completely invisible.
-                      const SizedBox(height: TestSemantics.fullScreen.height),
+                      SizedBox(height: TestSemantics.fullScreen.height),
                       Semantics(
                         container: true,
                         explicitChildNodes: true,
@@ -2974,7 +2974,7 @@ void main() {
                     addSemanticIndexes: false,
                     children: <Widget>[
                       // Clips OverlayPortal, making it completely invisible.
-                      const SizedBox(height: TestSemantics.fullScreen.height),
+                      SizedBox(height: TestSemantics.fullScreen.height),
                       KeepAlive(
                         keepAlive: true,
                         child: Semantics(

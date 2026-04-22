@@ -360,7 +360,7 @@ class PaintingContext extends ClipContext {
     assert(!_isRecording);
     _currentLayer = PictureLayer(estimatedBounds);
     _recorder = RendererBinding.instance.createPictureRecorder();
-    _canvas = RendererBinding.instance.createCanvas(_recorder);
+    _canvas = RendererBinding.instance.createCanvas(_recorder!);
     _containerLayer.append(_currentLayer!);
   }
 
@@ -954,7 +954,7 @@ class _LocalSemanticsHandle implements SemanticsHandle {
   _LocalSemanticsHandle._(PipelineOwner owner, this.listener) : _owner = owner {
     assert(debugMaybeDispatchCreated('rendering', '_LocalSemanticsHandle', this));
     if (listener != null) {
-      _owner.semanticsOwner!.addListener(listener);
+      _owner.semanticsOwner!.addListener(listener!);
     }
   }
 
@@ -967,7 +967,7 @@ class _LocalSemanticsHandle implements SemanticsHandle {
   void dispose() {
     assert(debugMaybeDispatchDisposed(this));
     if (listener != null) {
-      _owner.semanticsOwner!.removeListener(listener);
+      _owner.semanticsOwner!.removeListener(listener!);
     }
     _owner._didDisposeSemanticsHandle();
   }
@@ -4929,7 +4929,7 @@ mixin SemanticsAnnotationsMixin on RenderObject {
       config.addTagForChildren(_properties.tagForChildren!);
     }
     if (properties.role != null) {
-      config.role = _properties.role;
+      config.role = _properties.role!;
     }
     if (_properties.controlsNodes != null) {
       config.controlsNodes = _properties.controlsNodes;
@@ -4939,11 +4939,11 @@ mixin SemanticsAnnotationsMixin on RenderObject {
     }
 
     if (_properties.hitTestBehavior != null) {
-      config.hitTestBehavior = _properties.hitTestBehavior;
+      config.hitTestBehavior = _properties.hitTestBehavior!;
     }
 
     if (_properties.inputType != null) {
-      config.inputType = _properties.inputType;
+      config.inputType = _properties.inputType!;
     }
     if (_properties.minValue != null) {
       config.minValue = _properties.minValue;
@@ -6120,21 +6120,21 @@ class _RenderObjectSemantics extends _SemanticsFragment with DiagnosticableTreeM
         if (parentGeometry.semanticsClipRect != null) {
           final Rect rect = MatrixUtils.transformRect(
             parentGeometry.transform,
-            parentGeometry.semanticsClipRect,
+            parentGeometry.semanticsClipRect!,
           );
           semanticsClipRect = semanticsClipRect?.intersect(rect) ?? rect;
         }
         if (parentGeometry.paintClipRect != null) {
           final Rect rect = MatrixUtils.transformRect(
             parentGeometry.transform,
-            parentGeometry.paintClipRect,
+            parentGeometry.paintClipRect!,
           );
           paintClipRect = paintClipRect?.intersect(rect) ?? rect;
         }
       }
       final SemanticsNode node = entry.key;
       node
-        ..rect = rect
+        ..rect = rect!
         ..transform =
             null // transform has be taking into account when
         // calculating the rect.
