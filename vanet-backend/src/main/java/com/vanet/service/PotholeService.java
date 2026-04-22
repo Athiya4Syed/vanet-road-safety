@@ -6,9 +6,6 @@ import com.vanet.repository.EncryptedPotholeLogRepository;
 import com.vanet.repository.PotholeReportRepository;
 import com.vanet.service.PQCEncryptionService.EncryptedPotholeData;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.GeometryFactory;
-import org.locationtech.jts.geom.Point;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,16 +14,14 @@ import java.util.logging.Logger;
 @Service
 public class PotholeService {
 
-    // ✅ Manual logger instead of @Slf4j
-    private static final Logger log = Logger.getLogger(PotholeService.class.getName());
+    private static final Logger log =
+        Logger.getLogger(PotholeService.class.getName());
 
     private final PotholeReportRepository repository;
     private final EncryptedPotholeLogRepository encryptedLogRepository;
     private final PQCEncryptionService pqcEncryptionService;
     private final ObjectMapper objectMapper = new ObjectMapper();
-    private final GeometryFactory geometryFactory = new GeometryFactory();
 
-    // ✅ Manual constructor instead of @RequiredArgsConstructor
     public PotholeService(
             PotholeReportRepository repository,
             EncryptedPotholeLogRepository encryptedLogRepository,
@@ -40,15 +35,9 @@ public class PotholeService {
                                        String severity, String description,
                                        String deviceId) {
         try {
-            Point location = geometryFactory.createPoint(
-                new Coordinate(longitude, latitude)
-            );
-            location.setSRID(4326);
-
             PotholeReport pothole = new PotholeReport();
             pothole.setLatitude(latitude);
             pothole.setLongitude(longitude);
-            pothole.setLocation(location);
             pothole.setSeverity(severity);
             pothole.setDescription(description);
             pothole.setDeviceId(deviceId);

@@ -1,7 +1,6 @@
 package com.vanet.model;
 
 import jakarta.persistence.*;
-import org.locationtech.jts.geom.Point;
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,8 +17,7 @@ public class PotholeReport {
     @Column(nullable = false)
     private Double longitude;
 
-    @Column(columnDefinition = "geometry(Point,4326)")
-    private Point location;
+    
 
     @Column(length = 20)
     private String severity;
