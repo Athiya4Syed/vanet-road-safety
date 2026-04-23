@@ -17,8 +17,6 @@ public class PotholeReport {
     @Column(nullable = false)
     private Double longitude;
 
-    
-
     @Column(length = 20)
     private String severity;
 
@@ -34,10 +32,9 @@ public class PotholeReport {
     @Column(nullable = false)
     private Integer verificationCount = 0;
 
-    @Column(nullable = false, updatable = false)
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(nullable = false)
     private LocalDateTime updatedAt;
 
     @PrePersist
@@ -51,11 +48,9 @@ public class PotholeReport {
         updatedAt = LocalDateTime.now();
     }
 
-    // ✅ ALL GETTERS
     public Long getId() { return id; }
     public Double getLatitude() { return latitude; }
     public Double getLongitude() { return longitude; }
-    public Point getLocation() { return location; }
     public String getSeverity() { return severity; }
     public String getDescription() { return description; }
     public String getDeviceId() { return deviceId; }
@@ -64,16 +59,14 @@ public class PotholeReport {
     public LocalDateTime getCreatedAt() { return createdAt; }
     public LocalDateTime getUpdatedAt() { return updatedAt; }
 
-    // ✅ ALL SETTERS
     public void setId(Long id) { this.id = id; }
     public void setLatitude(Double latitude) { this.latitude = latitude; }
     public void setLongitude(Double longitude) { this.longitude = longitude; }
-    public void setLocation(Point location) { this.location = location; }
     public void setSeverity(String severity) { this.severity = severity; }
     public void setDescription(String description) { this.description = description; }
     public void setDeviceId(String deviceId) { this.deviceId = deviceId; }
     public void setVerified(Boolean verified) { this.verified = verified; }
-    public void setVerificationCount(Integer verificationCount) { this.verificationCount = verificationCount; }
+    public void setVerificationCount(Integer count) { this.verificationCount = count; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
     public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
 }
