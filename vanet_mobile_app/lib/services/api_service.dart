@@ -85,7 +85,7 @@ class ApiService {
           .get(
             Uri.parse('$backendUrl/health'),
           )
-          .timeout(const Duration(seconds: 5));
+          .timeout(const Duration(seconds: 60));
 
       if (response.statusCode == 200) {
         return jsonDecode(response.body);
