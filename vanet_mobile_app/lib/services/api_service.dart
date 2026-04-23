@@ -5,6 +5,18 @@ import '../models/pothole_model.dart';
 class ApiService {
   static const String backendUrl =
       'https://vanet-road-safety.onrender.com/api/vanet';
+  // Wake up Render server
+  static Future<void> wakeUpServer() async {
+    try {
+      await http
+          .get(
+            Uri.parse('$backendUrl/health'),
+          )
+          .timeout(const Duration(seconds: 60));
+    } catch (e) {
+      // ignore - just waking up
+    }
+  }
 
   // Report a pothole
   static Future<PotholeReport> reportPothole({
