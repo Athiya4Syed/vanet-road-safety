@@ -83,26 +83,37 @@ class _ReportPotholeScreenState extends State<ReportPotholeScreen> {
     }
     _formKey.currentState!.save();
     setState(() => _isLoading = true);
+
     try {
-      final pothole = await ApiService.reportPothole(
+      // Wake up server first
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('⏳ Connecting to server... please wait 30 seconds'),
+          duration: Duration(seconds: 30),
+          backgroundColor: Colors.orange,
+        ),
+      );
+
+      await ApiService.wakeUpServer();
+
+      final result = await ApiService.reportPothole(
         latitude: _latitude!,
         longitude: _longitude!,
         severity: _selectedSeverity!,
         description: _description,
         deviceId: 'vehicle-WEB001',
       );
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('✅ Pothole #${pothole.id} reported!'),
+          content: Text('✅ Pothole reported successfully!'),
           backgroundColor: Colors.green,
           duration: const Duration(seconds: 3),
         ),
       );
+
       _formKey.currentState!.reset();
-      setState(() {
-        _selectedSeverity = null;
-        _description = '';
-      });
+      setState(() => _selectedSeverity = null);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
