@@ -91,6 +91,19 @@ public class PotholeService {
         }
     }
 
+    //delete the pathole 
+
+    public void deletePothole(Long id) {
+    try {
+        encryptedLogRepository.deleteByPotholeId(id);
+        repository.deleteById(id);
+        log.info("Pothole deleted: " + id);
+    } catch (Exception e) {
+        log.severe("Error deleting pothole: " + e.getMessage());
+        throw new RuntimeException("Failed to delete pothole", e);
+    }
+}
+
     public PotholeReport verifyPothole(Long id) {
         try {
             PotholeReport pothole = repository.findById(id).orElseThrow();

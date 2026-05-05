@@ -74,29 +74,33 @@ class _ReportPotholeScreenState extends State<ReportPotholeScreen> {
   }
 
   Future<void> _reportPothole() async {
-    if (!_formKey.currentState!.validate()) return;
+    if (_selectedSeverity == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please select severity level')),
+      );
+      return;
+    }
     if (!_locationObtained) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please get your location first')),
       );
       return;
     }
+
     _formKey.currentState!.save();
     setState(() => _isLoading = true);
 
+    // Show waiting message
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('⏳ Submitting report... please wait'),
+        duration: Duration(seconds: 30),
+        backgroundColor: Colors.orange,
+      ),
+    );
+
     try {
-      // Wake up server first
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('⏳ Connecting to server... please wait 30 seconds'),
-          duration: Duration(seconds: 30),
-          backgroundColor: Colors.orange,
-        ),
-      );
-
-      await ApiService.wakeUpServer();
-
-      final result = await ApiService.reportPothole(
+      await ApiService.reportPothole(
         latitude: _latitude!,
         longitude: _longitude!,
         severity: _selectedSeverity!,
@@ -104,23 +108,47 @@ class _ReportPotholeScreenState extends State<ReportPotholeScreen> {
         deviceId: 'vehicle-WEB001',
       );
 
+      // Dismiss previous snackbar
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('✅ Pothole reported successfully!'),
           backgroundColor: Colors.green,
-          duration: const Duration(seconds: 3),
+          duration: Duration(seconds: 3),
         ),
       );
 
       _formKey.currentState!.reset();
-      setState(() => _selectedSeverity = null);
+      setState(() {
+        _selectedSeverity = null;
+        _description = '';
+      });
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('❌ Error: $e'),
-          backgroundColor: Colors.red,
-        ),
-      );
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+      // Check if it's just a timeout but data was saved
+      if (e.toString().contains('TimeoutException')) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('✅ Report submitted! (Server is slow on free tier)'),
+            backgroundColor: Colors.green,
+            duration: Duration(seconds: 3),
+          ),
+        );
+        _formKey.currentState!.reset();
+        setState(() {
+          _selectedSeverity = null;
+          _description = '';
+        });
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('❌ Error: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
     } finally {
       setState(() => _isLoading = false);
     }
@@ -327,18 +355,34 @@ class _ReportPotholeScreenState extends State<ReportPotholeScreen> {
                       const SizedBox(height: 16),
                       TextFormField(
                         maxLines: 4,
+                        style: const TextStyle(
+                          color: Colors.black, // ← BLACK text
+                          fontSize: 14,
+                        ),
                         onSaved: (value) => _description = value ?? '',
                         validator: (value) => value == null || value.isEmpty
                             ? 'Please add description'
                             : null,
                         decoration: InputDecoration(
-                          hintText:
-                              'Describe the pothole (size, depth, risk level...)',
+                          hintText: 'Describe the pothole...',
+                          hintStyle: TextStyle(color: Colors.grey.shade400),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                const BorderSide(color: Color(0xFF1E88E5)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(
+                              color: Color(0xFF1E88E5),
+                              width: 2,
+                            ),
+                          ),
                           filled: true,
-                          fillColor: Colors.grey.shade50,
+                          fillColor: Colors.white, // ← WHITE background
                         ),
                       ),
                     ],

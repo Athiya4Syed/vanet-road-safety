@@ -9,230 +9,278 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F7FA),
-      appBar: AppBar(
-        title: const Text(
-          '🚗 VANET Road Safety',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Hero Banner
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color(0xFF1565C0), Color(0xFF42A5F5)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.blue.withOpacity(0.3),
-                    blurRadius: 15,
-                    offset: const Offset(0, 5),
-                  ),
-                ],
-              ),
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      backgroundColor: const Color(0xFF0A0E21),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Header
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Vijayapura Road Safety',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Protecting lives during monsoon season with quantum-safe technology',
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 14,
-                    ),
-                  ),
-                  SizedBox(height: 16),
-                  Row(
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _StatChip(label: '200+', sublabel: 'Lives at risk'),
-                      SizedBox(width: 12),
-                      _StatChip(label: 'PQC', sublabel: 'Encrypted'),
-                      SizedBox(width: 12),
-                      _StatChip(label: '24/7', sublabel: 'Monitoring'),
+                      Text(
+                        'Hello, Athiya 👋',
+                        style: TextStyle(
+                          color: Colors.grey.shade400,
+                          fontSize: 14,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      const Text(
+                        'VANET Road Safety',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ],
                   ),
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF1D1E33),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Icon(
+                      Icons.notifications_outlined,
+                      color: Color(0xFF1E88E5),
+                    ),
+                  ),
                 ],
               ),
-            ),
-            const SizedBox(height: 24),
+              const SizedBox(height: 24),
 
-            // System Status
-            const Text(
-              'System Status',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF1A1A2E),
-              ),
-            ),
-            const SizedBox(height: 12),
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
+              // Hero Card
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFF1E88E5), Color(0xFF0D47A1)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(24),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xFF1E88E5).withOpacity(0.3),
+                      blurRadius: 20,
+                      offset: const Offset(0, 10),
+                    ),
+                  ],
+                ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _StatusTile(
-                      icon: Icons.cloud_done,
-                      label: 'Backend',
-                      value: 'Running',
-                      color: Colors.green,
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 6,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.2),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: const Text(
+                        '🛡️ Quantum-Safe System',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
-                    const Divider(height: 16),
-                    _StatusTile(
-                      icon: Icons.storage,
-                      label: 'Database',
-                      value: 'Connected',
-                      color: Colors.green,
+                    const SizedBox(height: 16),
+                    const Text(
+                      'Vijayapura\nRoad Safety',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        height: 1.2,
+                      ),
                     ),
-                    const Divider(height: 16),
-                    _StatusTile(
-                      icon: Icons.lock,
-                      label: 'PQC Encryption',
-                      value: 'AES-256-RSA Active',
-                      color: Colors.blue,
+                    const SizedBox(height: 8),
+                    Text(
+                      'Protecting lives during monsoon season',
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.8),
+                        fontSize: 13,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Row(
+                      children: [
+                        _HeroStat(label: '200+', sublabel: 'Lives at risk'),
+                        const SizedBox(width: 20),
+                        _HeroStat(label: 'PQC', sublabel: 'Encrypted'),
+                        const SizedBox(width: 20),
+                        _HeroStat(label: '24/7', sublabel: 'Active'),
+                      ],
                     ),
                   ],
                 ),
               ),
-            ),
-            const SizedBox(height: 24),
+              const SizedBox(height: 24),
 
-            // Actions
-            const Text(
-              'Actions',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF1A1A2E),
-              ),
-            ),
-            const SizedBox(height: 12),
-
-            // Report Pothole
-            _ActionCard(
-              icon: Icons.add_location_alt,
-              title: 'Report Pothole',
-              subtitle: 'Report a pothole at your location',
-              color: Colors.green,
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ReportPotholeScreen(),
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
-
-            // Nearby Potholes
-            _ActionCard(
-              icon: Icons.location_on,
-              title: 'Nearby Potholes',
-              subtitle: 'View potholes within 2km radius',
-              color: Colors.orange,
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const NearbyPotholesScreen(),
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
-
-            // Verified Potholes
-            _ActionCard(
-              icon: Icons.verified,
-              title: 'Verified Potholes',
-              subtitle: 'Community verified road hazards',
-              color: Colors.blue,
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const VerifiedPotholesScreen(),
-                ),
-              ),
-            ),
-            const SizedBox(height: 24),
-
-            // Footer
-            Center(
-              child: Text(
-                'Powered by Quantum-Safe Blockchain VANET',
+              // Status Section
+              const Text(
+                'System Status',
                 style: TextStyle(
-                  color: Colors.grey.shade500,
-                  fontSize: 12,
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-            const SizedBox(height: 8),
-          ],
+              const SizedBox(height: 12),
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF1D1E33),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Column(
+                  children: [
+                    _StatusItem(
+                      icon: Icons.cloud_done_outlined,
+                      label: 'Backend Server',
+                      value: 'Running',
+                      color: const Color(0xFF00E676),
+                    ),
+                    const SizedBox(height: 16),
+                    _StatusItem(
+                      icon: Icons.storage_outlined,
+                      label: 'Database',
+                      value: 'Connected',
+                      color: const Color(0xFF00E676),
+                    ),
+                    const SizedBox(height: 16),
+                    _StatusItem(
+                      icon: Icons.lock_outlined,
+                      label: 'PQC Encryption',
+                      value: 'AES-256 Active',
+                      color: const Color(0xFF00B0FF),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 24),
+
+              // Actions
+              const Text(
+                'Quick Actions',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 12),
+
+              _ActionTile(
+                icon: Icons.add_location_alt_outlined,
+                title: 'Report Pothole',
+                subtitle: 'Report a hazard at your location',
+                iconColor: const Color(0xFF00E676),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const ReportPotholeScreen(),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+
+              _ActionTile(
+                icon: Icons.location_on_outlined,
+                title: 'Nearby Potholes',
+                subtitle: 'View hazards within 2km radius',
+                iconColor: const Color(0xFFFFD740),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const NearbyPotholesScreen(),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+
+              _ActionTile(
+                icon: Icons.verified_outlined,
+                title: 'Verified Potholes',
+                subtitle: 'Community verified road hazards',
+                iconColor: const Color(0xFF00B0FF),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const VerifiedPotholesScreen(),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 24),
+
+              // Footer
+              Center(
+                child: Text(
+                  'Powered by Quantum-Safe Blockchain VANET',
+                  style: TextStyle(
+                    color: Colors.grey.shade600,
+                    fontSize: 11,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class _StatChip extends StatelessWidget {
+class _HeroStat extends StatelessWidget {
   final String label;
   final String sublabel;
 
-  const _StatChip({required this.label, required this.sublabel});
+  const _HeroStat({required this.label, required this.sublabel});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.2),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        children: [
-          Text(
-            label,
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
           ),
-          Text(
-            sublabel,
-            style: const TextStyle(
-              color: Colors.white70,
-              fontSize: 11,
-            ),
+        ),
+        Text(
+          sublabel,
+          style: TextStyle(
+            color: Colors.white.withOpacity(0.7),
+            fontSize: 11,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
 
-class _StatusTile extends StatelessWidget {
+class _StatusItem extends StatelessWidget {
   final IconData icon;
   final String label;
   final String value;
   final Color color;
 
-  const _StatusTile({
+  const _StatusItem({
     required this.icon,
     required this.label,
     required this.value,
@@ -247,16 +295,16 @@ class _StatusTile extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             color: color.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(10),
           ),
-          child: Icon(icon, color: color, size: 20),
+          child: Icon(icon, color: color, size: 18),
         ),
         const SizedBox(width: 12),
         Text(
           label,
-          style: const TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w500,
+          style: TextStyle(
+            color: Colors.grey.shade400,
+            fontSize: 14,
           ),
         ),
         const Spacer(),
@@ -271,7 +319,7 @@ class _StatusTile extends StatelessWidget {
             style: TextStyle(
               color: color,
               fontSize: 12,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),
@@ -280,69 +328,75 @@ class _StatusTile extends StatelessWidget {
   }
 }
 
-class _ActionCard extends StatelessWidget {
+class _ActionTile extends StatelessWidget {
   final IconData icon;
   final String title;
   final String subtitle;
-  final Color color;
+  final Color iconColor;
   final VoidCallback onTap;
 
-  const _ActionCard({
+  const _ActionTile({
     required this.icon,
     required this.title,
     required this.subtitle,
-    required this.color,
+    required this.iconColor,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: color.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Icon(icon, color: color, size: 28),
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      subtitle,
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.grey.shade600,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Icon(
-                Icons.arrow_forward_ios,
-                color: Colors.grey.shade400,
-                size: 16,
-              ),
-            ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: const Color(0xFF1D1E33),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: iconColor.withOpacity(0.2),
+            width: 1,
           ),
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: iconColor.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: Icon(icon, color: iconColor, size: 24),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    subtitle,
+                    style: TextStyle(
+                      color: Colors.grey.shade500,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.grey.shade600,
+              size: 14,
+            ),
+          ],
         ),
       ),
     );

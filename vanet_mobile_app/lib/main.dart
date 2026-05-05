@@ -15,11 +15,16 @@ class VanetApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF1565C0),
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: const Color(0xFF0A0E21),
+        colorScheme: const ColorScheme.dark(
+          primary: Color(0xFF1E88E5),
+          secondary: Color(0xFF00B0FF),
+          background: Color(0xFF0A0E21),
+          surface: Color(0xFF1D1E33),
         ),
         appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFF1565C0),
+          backgroundColor: Color(0xFF0A0E21),
           foregroundColor: Colors.white,
           elevation: 0,
           centerTitle: true,

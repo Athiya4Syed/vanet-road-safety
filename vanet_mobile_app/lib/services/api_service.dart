@@ -12,9 +12,23 @@ class ApiService {
           .get(
             Uri.parse('$backendUrl/health'),
           )
-          .timeout(const Duration(seconds: 60));
+          .timeout(const Duration(seconds: 120));
     } catch (e) {
       // ignore - just waking up
+    }
+  }
+
+  //delete the reported pathole
+
+  static Future<void> deletePothole({required int id}) async {
+    try {
+      await http
+          .delete(
+            Uri.parse('$backendUrl/report/$id'),
+          )
+          .timeout(const Duration(seconds: 60));
+    } catch (e) {
+      throw Exception('Error: $e');
     }
   }
 
@@ -32,7 +46,7 @@ class ApiService {
             Uri.parse(
                 '$backendUrl/report?latitude=$latitude&longitude=$longitude&severity=$severity&description=$description&deviceId=$deviceId'),
           )
-          .timeout(const Duration(seconds: 10));
+          .timeout(const Duration(seconds: 120));
 
       if (response.statusCode == 200) {
         return PotholeReport.fromJson(jsonDecode(response.body));
@@ -55,7 +69,7 @@ class ApiService {
             Uri.parse(
                 '$backendUrl/nearby?latitude=$latitude&longitude=$longitude'),
           )
-          .timeout(const Duration(seconds: 10));
+          .timeout(const Duration(seconds: 120));
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
@@ -76,7 +90,7 @@ class ApiService {
           .get(
             Uri.parse('$backendUrl/verified'),
           )
-          .timeout(const Duration(seconds: 10));
+          .timeout(const Duration(seconds: 120));
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
@@ -97,7 +111,7 @@ class ApiService {
           .get(
             Uri.parse('$backendUrl/health'),
           )
-          .timeout(const Duration(seconds: 60));
+          .timeout(const Duration(seconds: 120));
 
       if (response.statusCode == 200) {
         return jsonDecode(response.body);

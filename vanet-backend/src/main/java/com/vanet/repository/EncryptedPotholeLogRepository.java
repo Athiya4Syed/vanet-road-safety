@@ -11,4 +11,7 @@ public interface EncryptedPotholeLogRepository extends JpaRepository<EncryptedPo
     List<EncryptedPotholeLog> findByPotholeId(Long potholeId);
     
     List<EncryptedPotholeLog> findByAlgorithm(String algorithm);
+
+    void deleteByPotholeId(Long potholeId);
 }
+

@@ -93,6 +93,23 @@ public class HealthController {
         }
     }
 
+    //deleting the reported pathole 
+
+    @DeleteMapping("/api/vanet/report/{id}")
+public ResponseEntity<?> deletePothole(@PathVariable Long id) {
+    try {
+        potholeService.deletePothole(id);
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "✅ Pothole deleted successfully!");
+        response.put("id", id);
+        return ResponseEntity.ok(response);
+    } catch (Exception e) {
+        Map<String, Object> error = new HashMap<>();
+        error.put("error", e.getMessage());
+        return ResponseEntity.status(500).body(error);
+    }
+}
+
     @PostMapping("/api/vanet/verify/{id}")
     public ResponseEntity<?> verifyPothole(@PathVariable Long id) {
         try {
