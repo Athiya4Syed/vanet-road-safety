@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'report_pothole_screen.dart';
 import 'nearby_potholes_screen.dart';
 import 'verified_potholes_screen.dart';
+import 'yolo_detection_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -192,6 +193,22 @@ class HomeScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (_) => const ReportPotholeScreen(),
+                  ),
+                ),
+              ),
+
+              // AI Detection
+
+              const SizedBox(height: 12),
+              _ActionTile(
+                icon: Icons.camera_enhance_outlined,
+                title: 'AI Detection',
+                subtitle: 'Auto-detect potholes using YOLOv8',
+                iconColor: const Color(0xFFFF4081),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const YoloDetectionScreen(),
                   ),
                 ),
               ),
