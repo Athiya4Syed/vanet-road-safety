@@ -32,6 +32,38 @@ class ApiService {
     }
   }
 
+  //yolov8
+
+  // Detect pothole using YOLOv8
+  static Future<Map<String, dynamic>> detectPothole({
+    required List<int> imageBytes,
+    required double latitude,
+    required double longitude,
+  }) async {
+    try {
+      var request = http.MultipartRequest(
+        'POST',
+        Uri.parse('https://your-yolo-service.onrender.com/detect-and-report'
+            '?latitude=$latitude&longitude=$longitude&device_id=flutter-app'),
+      );
+
+      request.files.add(
+        http.MultipartFile.fromBytes(
+          'file',
+          imageBytes,
+          filename: 'pothole.jpg',
+        ),
+      );
+
+      var response = await request.send().timeout(const Duration(seconds: 60));
+      var responseBody = await response.stream.bytesToString();
+
+      return jsonDecode(responseBody);
+    } catch (e) {
+      throw Exception('Detection failed: $e');
+    }
+  }
+
   // Report a pothole
   static Future<PotholeReport> reportPothole({
     required double latitude,
