@@ -1,3 +1,4 @@
+
 name: vanet_mobile_app
 description: "VANET Road Safety System"
 publish_to: 'none'
@@ -18,6 +19,7 @@ dependencies:
   google_maps_flutter: ^2.5.0
   intl: ^0.19.0
   logger: ^2.0.1
+  image_picker: ^1.0.4
 
 dev_dependencies:
   flutter_test:

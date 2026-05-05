@@ -5,7 +5,7 @@ import 'verified_potholes_screen.dart';
 import 'yolo_detection_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -116,12 +116,12 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Row(
+                    const Row(
                       children: [
                         _HeroStat(label: '200+', sublabel: 'Lives at risk'),
-                        const SizedBox(width: 20),
+                        SizedBox(width: 20),
                         _HeroStat(label: 'PQC', sublabel: 'Encrypted'),
-                        const SizedBox(width: 20),
+                        SizedBox(width: 20),
                         _HeroStat(label: '24/7', sublabel: 'Active'),
                       ],
                     ),
@@ -146,27 +146,27 @@ class HomeScreen extends StatelessWidget {
                   color: const Color(0xFF1D1E33),
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: Column(
+                child: const Column(
                   children: [
                     _StatusItem(
                       icon: Icons.cloud_done_outlined,
                       label: 'Backend Server',
                       value: 'Running',
-                      color: const Color(0xFF00E676),
+                      color: Color(0xFF00E676),
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
                     _StatusItem(
                       icon: Icons.storage_outlined,
                       label: 'Database',
                       value: 'Connected',
-                      color: const Color(0xFF00E676),
+                      color: Color(0xFF00E676),
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
                     _StatusItem(
                       icon: Icons.lock_outlined,
                       label: 'PQC Encryption',
                       value: 'AES-256 Active',
-                      color: const Color(0xFF00B0FF),
+                      color: Color(0xFF00B0FF),
                     ),
                   ],
                 ),
@@ -208,7 +208,7 @@ class HomeScreen extends StatelessWidget {
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const YoloDetectionScreen(),
+                    builder: (_) => YoloDetectionScreen(),
                   ),
                 ),
               ),
