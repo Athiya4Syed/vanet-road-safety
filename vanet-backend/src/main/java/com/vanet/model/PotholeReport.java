@@ -11,30 +11,31 @@ public class PotholeReport {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "latitude", nullable = false)
     private Double latitude;
 
-    @Column(nullable = false)
+    @Column(name = "longitude", nullable = false)
     private Double longitude;
 
-    @Column(length = 20)
+    @Column(name = "severity", length = 20)
     private String severity;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
-    @Column(length = 100)
+    @Column(name = "device_id", length = 100)
     private String deviceId;
 
-    @Column(nullable = false)
+    @Column(name = "verified", nullable = false)
     private Boolean verified = false;
 
-    @Column(nullable = false)
+    @Column(name = "verification_count", nullable = false)
     private Integer verificationCount = 0;
 
-    @Column(updatable = false)
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     @PrePersist

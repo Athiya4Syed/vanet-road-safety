@@ -4,7 +4,6 @@ import com.vanet.model.EncryptedPotholeLog;
 import com.vanet.model.PotholeReport;
 import com.vanet.repository.EncryptedPotholeLogRepository;
 import com.vanet.repository.PotholeReportRepository;
-import com.vanet.service.PQCEncryptionService.EncryptedPotholeData;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
@@ -45,70 +44,65 @@ public class PotholeService {
             pothole.setVerificationCount(0);
 
             PotholeReport saved = repository.save(pothole);
+            log.info("Pothole saved with ID: " + saved.getId());
 
-            // Encrypt and store
-            String potholeJson = objectMapper.writeValueAsString(saved);
-            EncryptedPotholeData encrypted = pqcEncryptionService
-                .encryptPotholeData(potholeJson);
+            try {
+                String potholeJson = objectMapper.writeValueAsString(saved);
+                PQCEncryptionService.EncryptedPotholeData encrypted =
+                    pqcEncryptionService.encryptPotholeData(potholeJson);
 
-            EncryptedPotholeLog encryptedLog = new EncryptedPotholeLog();
-            encryptedLog.setPotholeId(saved.getId());
-            encryptedLog.setEncryptedData(encrypted.ciphertext);
-            encryptedLog.setEncapsulatedKey(encrypted.encapsulatedKey);
-            encryptedLog.setAlgorithm(encrypted.algorithm);
-            encryptedLog.setEncryptionTimestamp(encrypted.timestamp);
-            encryptedLogRepository.save(encryptedLog);
+                EncryptedPotholeLog encryptedLog = new EncryptedPotholeLog();
+                encryptedLog.setPotholeId(saved.getId());
+                encryptedLog.setEncryptedData(encrypted.ciphertext);
+                encryptedLog.setEncapsulatedKey(encrypted.encapsulatedKey);
+                encryptedLog.setAlgorithm(encrypted.algorithm);
+                encryptedLog.setEncryptionTimestamp(encrypted.timestamp);
+                encryptedLogRepository.save(encryptedLog);
+                log.info("Encrypted log saved");
+            } catch (Exception encryptError) {
+                log.warning("Encryption failed but pothole saved: " + 
+                    encryptError.getMessage());
+            }
 
-            log.info("Pothole reported at " + latitude + ", " + longitude);
             return saved;
 
         } catch (Exception e) {
-            log.severe("Error reporting pothole: " + e.getMessage());
-            throw new RuntimeException("Failed to report pothole", e);
+            log.severe("Error saving pothole: " + e.getMessage());
+            throw new RuntimeException("Failed to report pothole: " + 
+                e.getMessage(), e);
         }
     }
 
     public List<PotholeReport> getNearbyPotholes(Double lat, Double lng) {
-        return repository.findNearby(lat, lng);
+        try {
+            return repository.findNearby(lat, lng);
+        } catch (Exception e) {
+            log.severe("Error getting nearby: " + e.getMessage());
+            throw new RuntimeException("Failed to get nearby potholes", e);
+        }
     }
 
     public List<PotholeReport> getVerifiedPotholes() {
-        return repository.findByVerifiedTrue();
+        try {
+            return repository.findByVerifiedTrue();
+        } catch (Exception e) {
+            log.severe("Error getting verified: " + e.getMessage());
+            throw new RuntimeException("Failed to get verified potholes", e);
+        }
     }
 
     public PotholeReport verifyPothole(Long id) {
         try {
             PotholeReport pothole = repository.findById(id).orElseThrow();
             pothole.setVerificationCount(pothole.getVerificationCount() + 1);
-
             if (pothole.getVerificationCount() >= 5) {
                 pothole.setVerified(true);
             }
-
             pothole.setUpdatedAt(LocalDateTime.now());
-            PotholeReport updated = repository.save(pothole);
-
-            String verificationJson = objectMapper.writeValueAsString(updated);
-            EncryptedPotholeData encrypted = pqcEncryptionService
-                .encryptPotholeData(verificationJson);
-
-            EncryptedPotholeLog encryptedLog = new EncryptedPotholeLog();
-            encryptedLog.setPotholeId(id);
-            encryptedLog.setEncryptedData(encrypted.ciphertext);
-            encryptedLog.setEncapsulatedKey(encrypted.encapsulatedKey);
-            encryptedLog.setAlgorithm(encrypted.algorithm);
-            encryptedLog.setEncryptionTimestamp(encrypted.timestamp);
-            encryptedLogRepository.save(encryptedLog);
-
-            return updated;
-
+            return repository.save(pothole);
         } catch (Exception e) {
-            log.severe("Error verifying pothole: " + e.getMessage());
+            log.severe("Error verifying: " + e.getMessage());
             throw new RuntimeException("Failed to verify pothole", e);
         }
-    }
-
-    public List<EncryptedPotholeLog> getEncryptedLogs(Long potholeId) {
-        return encryptedLogRepository.findByPotholeId(potholeId);
     }
 }

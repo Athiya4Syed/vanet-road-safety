@@ -8,11 +8,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PotholeReportRepository extends JpaRepository<PotholeReport, Long> {
+public interface PotholeReportRepository extends 
+    JpaRepository<PotholeReport, Long> {
 
     List<PotholeReport> findByVerifiedTrue();
 
-    // Simple distance query without PostGIS
     @Query(value = "SELECT * FROM pothole_reports WHERE " +
             "ABS(latitude - :lat) < 0.02 AND " +
             "ABS(longitude - :lng) < 0.02",
