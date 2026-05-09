@@ -1,15 +1,15 @@
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from ultralytics import YOLO
 from PIL import Image
 import io
-import numpy as np
 import uvicorn
 import os
+import requests as req
+import base64
+from ultralytics import YOLO
 
 app = FastAPI(title="VANET YOLOv8 Pothole Detection")
 
-# Allow all origins
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -17,83 +17,73 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Load YOLOv8 model
-print("Loading YOLOv8 model...")
-model = YOLO('yolov8n.pt')  # Downloads automatically
-print("Model loaded!")
+# Load custom trained model
+def load_model():
+    paths = [
+        'runs/detect/pothole_custom/weights/best.pt',
+        'runs/detect/pothole_custom-1/weights/best.pt',
+        'runs/detect/pothole_custom-2/weights/best.pt',
+        'runs/detect/pothole_custom-3/weights/best.pt',
+        'runs/detect/pothole_custom-4/weights/best.pt',
+        'runs/detect/pothole_custom-5/weights/best.pt',
+        'runs/detect/pothole_custom-6/weights/best.pt',
+        'runs/detect/pothole_custom-7/weights/best.pt',
+    ]
+    for path in paths:
+        if os.path.exists(path):
+            print(f"✅ Loading trained model: {path}")
+            return YOLO(path)
+    print("⚠️ No trained model found, using default")
+    return YOLO('yolov8n.pt')
+
+model = load_model()
 
 @app.get("/")
 def root():
     return {
-        "service": "VANET YOLOv8 Pothole Detection",
+        "service": "VANET Pothole Detection",
         "status": "running",
-        "model": "YOLOv8n"
+        "model": "Custom Trained YOLOv8"
     }
 
 @app.get("/health")
 def health():
     return {
         "status": "✅ Running",
-        "model": "YOLOv8n",
-        "description": "Pothole detection service"
+        "model": "Custom Trained Pothole Model"
     }
 
 @app.post("/detect")
 async def detect_pothole(file: UploadFile = File(...)):
     try:
-        # Read image
         contents = await file.read()
         image = Image.open(io.BytesIO(contents))
-        
-        # Run YOLOv8 detection
-        results = model(image)
-        
-        detections = []
+
+        results = model(image, conf=0.25)
+
         pothole_detected = False
         confidence = 0.0
-        
+
         for result in results:
             boxes = result.boxes
-            if boxes is not None:
-                for box in boxes:
-                    class_id = int(box.cls[0])
-                    class_name = result.names[class_id]
-                    conf = float(box.conf[0])
-                    
-                    # Check if pothole detected
-                    if 'pothole' in class_name.lower() or conf > 0.5:
-                        pothole_detected = True
-                        confidence = max(confidence, conf)
-                    
-                    detections.append({
-                        "class": class_name,
-                        "confidence": conf,
-                        "bbox": box.xyxy[0].tolist()
-                    })
-        
-        # Determine severity based on confidence
+            if boxes is not None and len(boxes) > 0:
+                pothole_detected = True
+                confidence = float(boxes.conf.max())
+
         severity = "LOW"
-        if confidence > 0.8:
-            severity = "CRITICAL"
-        elif confidence > 0.6:
-            severity = "HIGH"
-        elif confidence > 0.4:
-            severity = "MEDIUM"
-        
+        if confidence > 0.8: severity = "CRITICAL"
+        elif confidence > 0.6: severity = "HIGH"
+        elif confidence > 0.4: severity = "MEDIUM"
+
         return {
             "pothole_detected": pothole_detected,
             "confidence": confidence,
             "severity": severity,
-            "detections": detections,
-            "total_objects": len(detections),
             "message": "Pothole detected!" if pothole_detected else "No pothole detected"
         }
-        
+
     except Exception as e:
-        return {
-            "error": str(e),
-            "pothole_detected": False
-        }
+        return {"error": str(e), "pothole_detected": False}
 
 @app.post("/detect-and-report")
 async def detect_and_report(
@@ -103,42 +93,33 @@ async def detect_and_report(
     device_id: str = "yolo-detector"
 ):
     try:
-        # Detect pothole
         contents = await file.read()
         image = Image.open(io.BytesIO(contents))
-        results = model(image)
-        
+
+        results = model(image, conf=0.25)
+
         pothole_detected = False
         confidence = 0.0
-        
+
         for result in results:
             boxes = result.boxes
-            if boxes is not None:
-                for box in boxes:
-                    conf = float(box.conf[0])
-                    confidence = max(confidence, conf)
-                    if conf > 0.3:
-                        pothole_detected = True
-        
+            if boxes is not None and len(boxes) > 0:
+                pothole_detected = True
+                confidence = float(boxes.conf.max())
+
+        severity = "LOW"
+        if confidence > 0.8: severity = "CRITICAL"
+        elif confidence > 0.6: severity = "HIGH"
+        elif confidence > 0.4: severity = "MEDIUM"
+
+        reported = False
         if pothole_detected:
-            # Determine severity
-            severity = "LOW"
-            if confidence > 0.8:
-                severity = "CRITICAL"
-            elif confidence > 0.6:
-                severity = "HIGH"
-            elif confidence > 0.4:
-                severity = "MEDIUM"
-            
-            # Report to Spring Boot backend
-            import requests
-            backend_url = os.getenv(
-                "BACKEND_URL",
-                "https://vanet-road-safety.onrender.com"
-            )
-            
             try:
-                response = requests.post(
+                backend_url = os.getenv(
+                    "BACKEND_URL",
+                    "https://vanet-road-safety.onrender.com"
+                )
+                response = req.post(
                     f"{backend_url}/api/vanet/report",
                     params={
                         "latitude": latitude,
@@ -152,23 +133,17 @@ async def detect_and_report(
                 reported = response.status_code == 200
             except:
                 reported = False
-            
-            return {
-                "pothole_detected": True,
-                "confidence": confidence,
-                "severity": severity,
-                "auto_reported": reported,
-                "message": f"Pothole detected and {'reported!' if reported else 'report failed'}"
-            }
-        
+
         return {
-            "pothole_detected": False,
+            "pothole_detected": pothole_detected,
             "confidence": confidence,
-            "message": "No pothole detected in image"
+            "severity": severity,
+            "auto_reported": reported,
+            "message": f"Pothole detected!" if pothole_detected else "No pothole detected"
         }
-        
+
     except Exception as e:
-        return {"error": str(e)}
+        return {"error": str(e), "pothole_detected": False}
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)

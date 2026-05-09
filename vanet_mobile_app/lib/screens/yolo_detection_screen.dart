@@ -20,6 +20,7 @@ class _YoloDetectionScreenState extends State<YoloDetectionScreen> {
   Future<void> _pickImage() async {
     final XFile? image = await _picker.pickImage(
       source: ImageSource.gallery,
+      imageQuality: 80,
     );
     if (image != null) {
       final bytes = await image.readAsBytes();
