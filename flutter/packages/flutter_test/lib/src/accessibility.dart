@@ -135,7 +135,7 @@ class MinimumTapTargetGuideline extends AccessibilityGuideline {
   FutureOr<Evaluation> evaluate(WidgetTester tester) {
     var result = const Evaluation.pass();
     for (final RenderView view in tester.binding.renderViews) {
-      result += _traverse(view.flutterView, view.owner!.semanticsOwner!.rootSemanticsNode!);
+      result += _traverse(view.flutterView, view.owner!.semanticsOwner!.rootSemanticsNode);
     }
 
     return result;
@@ -154,7 +154,7 @@ class MinimumTapTargetGuideline extends AccessibilityGuideline {
       return result;
     }
     Rect paintBounds = node.rect;
-    SemanticsNode? current = node;
+    var current = node;
 
     while (current != null) {
       final Matrix4? transform = current.transform;
@@ -239,7 +239,7 @@ class LabeledTapTargetGuideline extends AccessibilityGuideline {
     var result = const Evaluation.pass();
 
     for (final RenderView view in tester.binding.renderViews) {
-      result += _traverse(view.owner!.semanticsOwner!.rootSemanticsNode!);
+      result += _traverse(view.owner!.semanticsOwner!.rootSemanticsNode);
     }
 
     return result;
@@ -317,7 +317,7 @@ class MinimumTextContrastGuideline extends AccessibilityGuideline {
     var result = const Evaluation.pass();
     for (final RenderView renderView in tester.binding.renderViews) {
       final layer = renderView.debugLayer! as OffsetLayer;
-      final SemanticsNode root = renderView.owner!.semanticsOwner!.rootSemanticsNode!;
+      final SemanticsNode root = renderView.owner!.semanticsOwner!.rootSemanticsNode;
 
       late ui.Image image;
       final ByteData? byteData = await tester.binding.runAsync<ByteData?>(() async {
@@ -330,7 +330,7 @@ class MinimumTextContrastGuideline extends AccessibilityGuideline {
         return data;
       });
 
-      result += await _evaluateNode(root, tester, image, byteData!, renderView);
+      result += await _evaluateNode(root, tester, image, byteData, renderView);
     }
 
     return result;
@@ -409,7 +409,7 @@ class MinimumTextContrastGuideline extends AccessibilityGuideline {
     rootTransform.multiply(globalTransform);
     screenBounds = MatrixUtils.transformRect(rootTransform, renderBox.paintBounds);
     Rect nodeBounds = node.rect;
-    SemanticsNode? current = node;
+    var current = node;
     while (current != null) {
       final Matrix4? transform = current.transform;
       if (transform != null) {

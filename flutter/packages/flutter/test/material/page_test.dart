@@ -41,7 +41,7 @@ void main() {
       Offset widget2TopLeft = tester.getTopLeft(find.text('Page 2'));
       final RenderDecoratedBox box = tester
           .element(find.byKey(page2Key))
-          .findAncestorRenderObjectOfType<RenderDecoratedBox>()!;
+          .findAncestorRenderObjectOfType<RenderDecoratedBox>();
 
       // Page 1 is moving to the left.
       expect(widget1TransientTopLeft.dx < widget1InitialTopLeft.dx, true);
@@ -342,7 +342,7 @@ void main() {
                   },
                 ),
               ),
-              child: Builder(builder: (_) => child!),
+              child: Builder(builder: (_) => child),
             );
           },
         ),

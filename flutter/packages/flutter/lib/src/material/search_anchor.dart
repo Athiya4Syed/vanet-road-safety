@@ -682,8 +682,8 @@ class _SearchViewRoute extends PopupRoute<_SearchViewRoute> {
   @override
   TickerFuture didPush() {
     assert(anchorKey.currentContext != null);
-    updateViewConfig(anchorKey.currentContext!);
-    updateTweens(anchorKey.currentContext!);
+    updateViewConfig(anchorKey.currentContext);
+    updateTweens(anchorKey.currentContext);
     toggleVisibility?.call();
     viewOnOpen?.call();
     return super.didPush();
@@ -692,7 +692,7 @@ class _SearchViewRoute extends PopupRoute<_SearchViewRoute> {
   @override
   bool didPop(_SearchViewRoute? result) {
     assert(anchorKey.currentContext != null);
-    updateTweens(anchorKey.currentContext!);
+    updateTweens(anchorKey.currentContext);
     toggleVisibility?.call();
     viewOnClose?.call();
     // Unfocus the anchor to prevent the Enter key from triggering unwanted
@@ -800,7 +800,7 @@ class _SearchViewRoute extends PopupRoute<_SearchViewRoute> {
             reverseCurve: Curves.easeInOutCubicEmphasized.flipped,
           );
 
-          final Rect viewRect = _rectTween.evaluate(curvedAnimation!)!;
+          final Rect viewRect = _rectTween.evaluate(curvedAnimation!);
           final double topPadding = showFullScreenView
               ? lerpDouble(0.0, MediaQuery.paddingOf(context).top, curvedAnimation!.value)!
               : 0.0;
@@ -834,7 +834,7 @@ class _SearchViewRoute extends PopupRoute<_SearchViewRoute> {
                 viewPadding: viewPadding,
                 shrinkWrap: shrinkWrap,
                 showFullScreenView: showFullScreenView,
-                animation: curvedAnimation!,
+                animation: curvedAnimation,
                 topPadding: topPadding,
                 viewMaxWidth: _rectTween.end!.width,
                 viewRect: viewRect,

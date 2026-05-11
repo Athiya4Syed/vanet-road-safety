@@ -3,7 +3,7 @@ import '../services/api_service.dart';
 import '../models/pothole_model.dart';
 
 class NearbyPotholesScreen extends StatefulWidget {
-  const NearbyPotholesScreen({Key? key}) : super(key: key);
+  const NearbyPotholesScreen({super.key});
 
   @override
   State<NearbyPotholesScreen> createState() => _NearbyPotholesScreenState();

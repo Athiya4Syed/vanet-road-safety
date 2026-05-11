@@ -981,7 +981,7 @@ void main() {
 
     final RenderObject switchRenderObject = tester
         .element(find.byType(CupertinoSwitch))
-        .renderObject!;
+        .renderObject;
 
     expect(switchRenderObject, offLabelPaintPattern(alpha: 255));
     expect(switchRenderObject, onLabelPaintPattern(alpha: 0));
@@ -1034,7 +1034,7 @@ void main() {
 
       final RenderObject switchRenderObject = tester
           .element(find.byType(CupertinoSwitch))
-          .renderObject!;
+          .renderObject;
 
       expect(switchRenderObject, offLabelPaintPattern(highContrast: true, alpha: 255));
       expect(switchRenderObject, onLabelPaintPattern(alpha: 0));
@@ -1088,7 +1088,7 @@ void main() {
 
       final RenderObject switchRenderObject = tester
           .element(find.byType(CupertinoSwitch))
-          .renderObject!;
+          .renderObject;
 
       expect(switchRenderObject, offLabelPaintPattern(isRtl: true, alpha: 255));
       expect(switchRenderObject, onLabelPaintPattern(isRtl: true, alpha: 0));

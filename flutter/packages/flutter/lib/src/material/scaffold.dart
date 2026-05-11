@@ -335,7 +335,7 @@ class ScaffoldMessengerState extends State<ScaffoldMessenger> with TickerProvide
       // We provide a fallback key so that if back-to-back snackbars happen to
       // match in structure, material ink splashes and highlights don't survive
       // from one to the next.
-      snackBar.withAnimation(_snackBarController!, fallbackKey: UniqueKey()),
+      snackBar.withAnimation(_snackBarController, fallbackKey: UniqueKey()),
       Completer<SnackBarClosedReason>(),
       () {
         assert(_snackBars.first == controller);
@@ -515,7 +515,7 @@ class ScaffoldMessengerState extends State<ScaffoldMessenger> with TickerProvide
       // We provide a fallback key so that if back-to-back material banners happen to
       // match in structure, material ink splashes and highlights don't survive
       // from one to the next.
-      materialBanner.withAnimation(_materialBannerController!, fallbackKey: UniqueKey()),
+      materialBanner.withAnimation(_materialBannerController, fallbackKey: UniqueKey()),
       Completer<MaterialBannerClosedReason>(),
       () {
         assert(_materialBanners.first == controller);
@@ -841,7 +841,7 @@ class ScaffoldGeometry {
       floatingActionButtonArea!.center & Size.zero,
       floatingActionButtonArea,
       scaleFactor,
-    )!;
+    );
     return copyWith(floatingActionButtonArea: scaledButton);
   }
 
@@ -2953,7 +2953,7 @@ class ScaffoldState extends State<Scaffold>
           enableOpenDragGesture: widget.endDrawerEnableOpenDragGesture,
           isDrawerOpen: _endDrawerOpened.value,
           drawerBarrierDismissible: widget.drawerBarrierDismissible,
-          child: widget.endDrawer!,
+          child: widget.endDrawer,
         ),
         _ScaffoldSlot.endDrawer,
         // remove the side padding from the side we're not touching
@@ -2980,7 +2980,7 @@ class ScaffoldState extends State<Scaffold>
           enableOpenDragGesture: widget.drawerEnableOpenDragGesture,
           isDrawerOpen: _drawerOpened.value,
           drawerBarrierDismissible: widget.drawerBarrierDismissible,
-          child: widget.drawer!,
+          child: widget.drawer,
         ),
         _ScaffoldSlot.drawer,
         // remove the side padding from the side we're not touching
@@ -3058,7 +3058,7 @@ class ScaffoldState extends State<Scaffold>
           constraints: BoxConstraints(maxHeight: _appBarMaxHeight!),
           child: FlexibleSpaceBar.createSettings(
             currentExtent: _appBarMaxHeight!,
-            child: widget.appBar!,
+            child: widget.appBar,
           ),
         ),
         _ScaffoldSlot.appBar,
@@ -3436,7 +3436,7 @@ class _StandardBottomSheetState extends State<_StandardBottomSheet> {
             showDragHandle: widget.showDragHandle,
             onDragStart: _handleDragStart,
             onDragEnd: _handleDragEnd,
-            onClosing: widget.onClosing!,
+            onClosing: widget.onClosing,
             builder: widget.builder,
             backgroundColor: widget.backgroundColor,
             elevation: widget.elevation,
@@ -3463,7 +3463,7 @@ class PersistentBottomSheetController
     super.widget,
     super.completer,
     super.close,
-    StateSetter super.setState,
+    super.setState,
     this._isLocalHistoryEntry,
   ) : super._();
 

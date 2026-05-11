@@ -322,7 +322,7 @@ void main() {
     await tester.pumpWidget(const TestWidget());
     expect(findRoute('home', count: 0), findsOneWidget);
 
-    final Route<Object> oldRoute = ModalRoute.of(tester.element(find.text('Route: home')))!;
+    final Route<Object> oldRoute = ModalRoute.of(tester.element(find.text('Route: home')));
     expect(oldRoute.settings.name, 'home');
 
     tester
@@ -360,7 +360,7 @@ void main() {
     await tester.pumpWidget(const TestWidget());
     expect(findRoute('home', count: 0), findsOneWidget);
 
-    final Route<Object> oldRoute = ModalRoute.of(tester.element(find.text('Route: home')))!;
+    final Route<Object> oldRoute = ModalRoute.of(tester.element(find.text('Route: home')));
     expect(oldRoute.settings.name, 'home');
 
     tester
@@ -382,7 +382,7 @@ void main() {
     expect(findRoute('home', count: 0, skipOffstage: false), findsOneWidget);
     expect(findRoute('Anchor', count: 1), findsOneWidget);
 
-    final Route<Object> anchor = ModalRoute.of(tester.element(find.text('Route: Anchor')))!;
+    final Route<Object> anchor = ModalRoute.of(tester.element(find.text('Route: Anchor')));
     expect(anchor.settings.name, 'Anchor');
 
     tester
@@ -436,7 +436,7 @@ void main() {
     expect(findRoute('home', count: 0, skipOffstage: false), findsOneWidget);
     expect(findRoute('Anchor', count: 1), findsOneWidget);
 
-    final Route<Object> anchor = ModalRoute.of(tester.element(find.text('Route: Anchor')))!;
+    final Route<Object> anchor = ModalRoute.of(tester.element(find.text('Route: Anchor')));
     expect(anchor.settings.name, 'Anchor');
 
     tester
@@ -513,7 +513,7 @@ void main() {
     expect(findRoute('Foo'), findsOneWidget);
 
     // Push is in progress.
-    final ModalRoute<Object> route1 = ModalRoute.of(tester.element(find.text('Route: Foo')))!;
+    final ModalRoute<Object> route1 = ModalRoute.of(tester.element(find.text('Route: Foo')));
     final String route1id = route1.restorationScopeId.value!;
     expect(route1id, isNotNull);
     expect(route1.settings.name, 'Foo');
@@ -525,7 +525,7 @@ void main() {
 
     expect(findRoute('Foo'), findsOneWidget);
     expect(findRoute('home', skipOffstage: false), findsOneWidget);
-    final ModalRoute<Object> route2 = ModalRoute.of(tester.element(find.text('Route: Foo')))!;
+    final ModalRoute<Object> route2 = ModalRoute.of(tester.element(find.text('Route: Foo')));
     expect(route2, isNot(same(route1)));
     expect(route1.restorationScopeId.value, route1id);
     expect(route2.animation!.isCompleted, isTrue);
@@ -542,7 +542,7 @@ void main() {
     tester.state<NavigatorState>(find.byType(Navigator)).restorablePushNamed('Foo');
     await tester.pumpAndSettle();
 
-    final ModalRoute<Object> route1 = ModalRoute.of(tester.element(find.text('Route: Foo')))!;
+    final ModalRoute<Object> route1 = ModalRoute.of(tester.element(find.text('Route: Foo')));
     var notifyCount = 0;
     route1.restorationScopeId.addListener(() {
       notifyCount++;
@@ -662,7 +662,7 @@ void main() {
 
     final Route<Object> route = ModalRoute.of(
       tester.element(find.text('Route: route3', skipOffstage: false)),
-    )!;
+    );
     expect(route.settings.name, 'route3');
     tester.state<NavigatorState>(find.byType(Navigator)).removeRoute(route);
     await tester.pumpAndSettle();
@@ -753,7 +753,7 @@ void main() {
     tester.state<NavigatorState>(find.byType(Navigator)).restorablePushNamed('Bar');
     await tester.pumpAndSettle();
 
-    final Route<Object> oldRoute = ModalRoute.of(tester.element(find.text('Route: Bar')))!;
+    final Route<Object> oldRoute = ModalRoute.of(tester.element(find.text('Route: Bar')));
     expect(oldRoute.settings.name, 'Bar');
 
     final Matcher throwsArgumentsAssertionError = throwsA(

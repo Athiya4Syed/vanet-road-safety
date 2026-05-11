@@ -86,14 +86,14 @@ void main() {
       return tester
           .widget<RichText>(find.descendant(of: find.byType(Icon), matching: find.byType(RichText)))
           .text
-          .style!;
+          .style;
     }
 
     TextStyle getTextStyle(String text) {
       return tester
           .widget<RichText>(find.descendant(of: find.text(text), matching: find.byType(RichText)))
           .text
-          .style!;
+          .style;
     }
 
     useCaptureAll = false;
@@ -195,7 +195,7 @@ void main() {
       return tester
           .widget<RichText>(find.descendant(of: find.byKey(key), matching: find.byType(RichText)))
           .text
-          .style!;
+          .style;
     }
 
     expect(getIconStyle(icon1).color, innerColor);
@@ -241,7 +241,7 @@ void main() {
       return tester
           .widget<RichText>(find.descendant(of: find.text(text), matching: find.byType(RichText)))
           .text
-          .style!;
+          .style;
     }
 
     expect(getTextStyle('Hello').fontSize, null);

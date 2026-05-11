@@ -4,7 +4,7 @@ import 'package:geolocator/geolocator.dart';
 import '../services/api_service.dart';
 
 class ReportPotholeScreen extends StatefulWidget {
-  const ReportPotholeScreen({Key? key}) : super(key: key);
+  const ReportPotholeScreen({super.key});
 
   @override
   State<ReportPotholeScreen> createState() => _ReportPotholeScreenState();

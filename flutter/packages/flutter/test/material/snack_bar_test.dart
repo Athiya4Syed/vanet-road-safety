@@ -578,7 +578,7 @@ void main() {
     final TextStyle buttonTextStyle = tester
         .widget<RichText>(find.descendant(of: find.text('ACTION'), matching: find.byType(RichText)))
         .text
-        .style!;
+        .style;
     expect(buttonTextStyle.color, equals(darkTheme.colorScheme.primary));
   });
 
@@ -617,7 +617,7 @@ void main() {
     final TextStyle buttonTextStyle = tester
         .widget<RichText>(find.descendant(of: find.text('ACTION'), matching: find.byType(RichText)))
         .text
-        .style!;
+        .style;
     expect(buttonTextStyle.color, equals(darkTheme.colorScheme.inversePrimary));
   });
 
@@ -1003,7 +1003,7 @@ void main() {
     final Element actionTextButton = tester.element(find.widgetWithText(TextButton, 'ACTION'));
     final Widget textButton = actionTextButton.widget;
     if (textButton is TextButton) {
-      final ButtonStyle buttonStyle = textButton.style!;
+      final ButtonStyle buttonStyle = textButton.style;
       if (buttonStyle.foregroundColor is WidgetStateColor) {
         // Same color when resolved
         expect(buttonStyle.foregroundColor!.resolve(<WidgetState>{}), usedColor);
@@ -1054,7 +1054,7 @@ void main() {
     final Element actionTextButton = tester.element(find.widgetWithText(TextButton, 'ACTION'));
     final Widget textButton = actionTextButton.widget;
     if (textButton is TextButton) {
-      final ButtonStyle buttonStyle = textButton.style!;
+      final ButtonStyle buttonStyle = textButton.style;
       if (buttonStyle.foregroundColor is WidgetStateColor) {
         // Exactly the same object
         expect(buttonStyle.foregroundColor, usedColor);

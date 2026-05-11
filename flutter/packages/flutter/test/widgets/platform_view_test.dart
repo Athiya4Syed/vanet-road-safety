@@ -68,7 +68,7 @@ void main() {
       );
 
       final FakeAndroidPlatformView fakeView = viewsController.views.first;
-      final Uint8List rawCreationParams = fakeView.creationParams!;
+      final Uint8List rawCreationParams = fakeView.creationParams;
       final byteData = ByteData.view(
         rawCreationParams.buffer,
         rawCreationParams.offsetInBytes,
@@ -1054,7 +1054,7 @@ void main() {
         find.descendant(of: find.byType(AndroidView), matching: find.byType(Focus)),
       );
       final Element containerElement = tester.element(find.byKey(containerKey));
-      final FocusNode androidViewFocusNode = androidViewFocusWidget.focusNode!;
+      final FocusNode androidViewFocusNode = androidViewFocusWidget.focusNode;
       final FocusNode containerFocusNode = Focus.of(containerElement);
 
       containerFocusNode.requestFocus();
@@ -1520,7 +1520,7 @@ void main() {
       );
 
       final FakeUiKitView fakeView = viewsController.views.first;
-      final Uint8List rawCreationParams = fakeView.creationParams!;
+      final Uint8List rawCreationParams = fakeView.creationParams;
       final byteData = ByteData.view(
         rawCreationParams.buffer,
         rawCreationParams.offsetInBytes,
@@ -2128,7 +2128,7 @@ void main() {
       final Focus uiKitViewFocusWidget = tester.widget(
         find.descendant(of: find.byType(UiKitView), matching: find.byType(Focus)),
       );
-      final FocusNode uiKitViewFocusNode = uiKitViewFocusWidget.focusNode!;
+      final FocusNode uiKitViewFocusNode = uiKitViewFocusWidget.focusNode;
       final Element containerElement = tester.element(find.byKey(containerKey));
       final FocusNode containerFocusNode = Focus.of(containerElement);
 
@@ -2165,7 +2165,7 @@ void main() {
       final Focus uiKitViewFocusWidget = tester.widget(
         find.descendant(of: find.byType(UiKitView), matching: find.byType(Focus)),
       );
-      final FocusNode uiKitViewFocusNode = uiKitViewFocusWidget.focusNode!;
+      final FocusNode uiKitViewFocusNode = uiKitViewFocusWidget.focusNode;
 
       late Map<String, dynamic> channelArguments;
       tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(SystemChannels.textInput, (
@@ -2394,7 +2394,7 @@ void main() {
       );
 
       final FakeAppKitView fakeView = viewsController.views.first;
-      final Uint8List rawCreationParams = fakeView.creationParams!;
+      final Uint8List rawCreationParams = fakeView.creationParams;
       final byteData = ByteData.view(
         rawCreationParams.buffer,
         rawCreationParams.offsetInBytes,
@@ -3004,7 +3004,7 @@ void main() {
       final Focus uiKitViewFocusWidget = tester.widget(
         find.descendant(of: find.byType(AppKitView), matching: find.byType(Focus)),
       );
-      final FocusNode uiKitViewFocusNode = uiKitViewFocusWidget.focusNode!;
+      final FocusNode uiKitViewFocusNode = uiKitViewFocusWidget.focusNode;
       final Element containerElement = tester.element(find.byKey(containerKey));
       final FocusNode containerFocusNode = Focus.of(containerElement);
 
@@ -3041,7 +3041,7 @@ void main() {
       final Focus uiKitViewFocusWidget = tester.widget(
         find.descendant(of: find.byType(AppKitView), matching: find.byType(Focus)),
       );
-      final FocusNode uiKitViewFocusNode = uiKitViewFocusWidget.focusNode!;
+      final FocusNode uiKitViewFocusNode = uiKitViewFocusWidget.focusNode;
 
       late Map<String, dynamic> channelArguments;
       tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(SystemChannels.textInput, (
@@ -3833,7 +3833,7 @@ void main() {
       final Focus platformViewFocusWidget = tester.widget(
         find.descendant(of: find.byType(PlatformViewLink), matching: find.byType(Focus)),
       );
-      final FocusNode platformViewFocusNode = platformViewFocusWidget.focusNode!;
+      final FocusNode platformViewFocusNode = platformViewFocusWidget.focusNode;
       final Element containerElement = tester.element(find.byKey(containerKey));
       final FocusNode containerFocusNode = Focus.of(containerElement);
 

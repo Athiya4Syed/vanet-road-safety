@@ -970,7 +970,7 @@ void main() {
       await preparePicker(tester, (Future<DateTimeRange?> range) async {
         final InputDecoration startDateDecoration = tester
             .widget<TextField>(find.byType(TextField).first)
-            .decoration!;
+            .decoration;
         expect(startDateDecoration.border, const OutlineInputBorder());
         expect(startDateDecoration.filled, false);
         expect(startDateDecoration.hintText, 'mm/dd/yyyy');
@@ -979,7 +979,7 @@ void main() {
 
         final InputDecoration endDateDecoration = tester
             .widget<TextField>(find.byType(TextField).last)
-            .decoration!;
+            .decoration;
         expect(endDateDecoration.border, const OutlineInputBorder());
         expect(endDateDecoration.filled, false);
         expect(endDateDecoration.hintText, 'mm/dd/yyyy');
@@ -1813,7 +1813,7 @@ void main() {
         await preparePicker(tester, (Future<DateTimeRange?> range) async {
           final InputDecoration startDateDecoration = tester
               .widget<TextField>(find.byType(TextField).first)
-              .decoration!;
+              .decoration;
           expect(startDateDecoration.border, const UnderlineInputBorder());
           expect(startDateDecoration.filled, false);
           expect(startDateDecoration.hintText, 'mm/dd/yyyy');
@@ -1822,7 +1822,7 @@ void main() {
 
           final InputDecoration endDateDecoration = tester
               .widget<TextField>(find.byType(TextField).last)
-              .decoration!;
+              .decoration;
           expect(endDateDecoration.border, const UnderlineInputBorder());
           expect(endDateDecoration.filled, false);
           expect(endDateDecoration.hintText, 'mm/dd/yyyy');
@@ -2001,7 +2001,7 @@ void main() {
 
     final InputDecoration startDateDecoration = tester
         .widget<TextField>(find.byType(TextField).first)
-        .decoration!;
+        .decoration;
 
     expect(startDateDecoration.filled, isTrue);
   });

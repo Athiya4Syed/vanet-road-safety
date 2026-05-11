@@ -542,7 +542,7 @@ class Text extends StatelessWidget {
   ///
   /// See [RichText] which provides a lower-level way to draw text.
   const Text.rich(
-    InlineSpan this.textSpan, {
+    this.textSpan, {
     super.key,
     this.style,
     this.strutStyle,
@@ -736,7 +736,7 @@ class Text extends StatelessWidget {
         style: effectiveTextStyle,
         text: data,
         locale: locale,
-        children: textSpan != null ? <InlineSpan>[textSpan!] : null,
+        children: textSpan != null ? <InlineSpan>[textSpan] : null,
       ),
     );
     final StrutStyle? effectiveStrutStyle = strutStyle?.merge(
@@ -1368,7 +1368,7 @@ class _SelectableTextContainerDelegate extends StaticSelectionContainerDelegate 
       // Determining selection direction is inaccurate if currentSelectionStartIndex == currentSelectionEndIndex.
       // Use the range from the selectable within the selection as the source of truth for selection direction.
       final SelectedContentRange rangeAtSelectableInSelection =
-          selectables[currentSelectionStartIndex].getSelection()!;
+          selectables[currentSelectionStartIndex].getSelection();
       forwardSelection =
           rangeAtSelectableInSelection.endOffset >= rangeAtSelectableInSelection.startOffset;
     }

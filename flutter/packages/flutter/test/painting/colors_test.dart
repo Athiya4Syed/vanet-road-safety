@@ -26,7 +26,7 @@ void main() {
       color,
       const HSVColor.fromAHSV(0.3, 128.0, 0.7, 0.2),
       0.25,
-    )!;
+    );
     expect(result.alpha, moreOrLessEquals(0.6));
     expect(result.hue, moreOrLessEquals(53.0));
     expect(result.saturation, greaterThan(0.3999));
@@ -232,7 +232,7 @@ void main() {
       color,
       const HSLColor.fromAHSL(0.3, 128.0, 0.7, 0.2),
       0.25,
-    )!;
+    );
     expect(result.alpha, moreOrLessEquals(0.6));
     expect(result.hue, moreOrLessEquals(53.0));
     expect(result.saturation, greaterThan(0.3999));

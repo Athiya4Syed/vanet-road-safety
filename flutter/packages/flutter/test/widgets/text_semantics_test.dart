@@ -205,7 +205,7 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    final SemanticsNode root = tester.binding.pipelineOwner.semanticsOwner!.rootSemanticsNode!;
+    final SemanticsNode root = tester.binding.pipelineOwner.semanticsOwner!.rootSemanticsNode;
     final queue = <SemanticsNode>[root];
     SemanticsNode? targetNode;
     while (queue.isNotEmpty) {

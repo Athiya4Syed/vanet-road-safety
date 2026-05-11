@@ -15,6 +15,10 @@ import 'package:flutter_tools/src/commands/daemon.dart';
 import 'package:flutter_tools/src/commands/widget_preview.dart';
 import 'package:test/fake.dart';
 
+import '../../../../flutter/test/widgets/test_border.dart' show Logger;
+import '../../../../fuchsia_remote_debug_protocol/lib/logging.dart' show Logger;
+import '../../../../fuchsia_remote_debug_protocol/lib/src/common/logging.dart' show Logger;
+import '../../../lib/src/base/logger.dart' show Logger;
 import '../../src/common.dart';
 import '../../src/fakes.dart';
 

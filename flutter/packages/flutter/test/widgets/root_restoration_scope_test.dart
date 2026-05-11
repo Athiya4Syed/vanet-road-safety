@@ -289,7 +289,7 @@ void main() {
           as Map<Object?, Object?>)['foo'],
       42,
     );
-    final RestorationBucket firstBucket = state.bucket!;
+    final RestorationBucket firstBucket = state.bucket;
 
     // Replace with new root.
     final secondRawData = <String, dynamic>{

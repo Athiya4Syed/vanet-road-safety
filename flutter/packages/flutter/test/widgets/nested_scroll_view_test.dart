@@ -1045,7 +1045,7 @@ void main() {
         .byType(NestedScrollView)
         .evaluate()
         .first
-        .renderObject!;
+        .renderObject;
     void checkPhysicalLayer({required double elevation}) {
       final dynamic physicalModel = dfsFindPhysicalLayer(nestedScrollViewLayer);
       expect(physicalModel, isNotNull);
@@ -1685,7 +1685,7 @@ void main() {
       required bool visible,
     }) {
       final target = key.currentContext!.findRenderObject()! as RenderSliver;
-      final SliverGeometry geometry = target.geometry!;
+      final SliverGeometry geometry = target.geometry;
       expect(target.parent, isA<RenderSliverOverlapAbsorber>());
       expect(geometry.visible, visible);
       if (extentGreaterThan) {
@@ -3049,7 +3049,7 @@ void main() {
     final GlobalKey pinnedHeaderSliverKey = GlobalKey();
     final Finder pinnedHeader = find.text('Pinned Header');
     SliverGeometry getPinnedHeaderGeometry() =>
-        (pinnedHeaderSliverKey.currentContext!.findRenderObject()! as RenderSliver).geometry!;
+        (pinnedHeaderSliverKey.currentContext!.findRenderObject()! as RenderSliver).geometry;
 
     await tester.pumpWidget(
       MaterialApp(

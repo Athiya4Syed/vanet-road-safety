@@ -15,6 +15,7 @@ import 'package:flutter_tools/src/web/web_device.dart';
 import 'package:meta/meta.dart';
 import 'package:test/fake.dart';
 
+import '../../../lib/src/web/chrome.dart' show ChromiumLauncher;
 import '../../src/common.dart';
 import '../../src/fake_process_manager.dart';
 import '../../src/fakes.dart';

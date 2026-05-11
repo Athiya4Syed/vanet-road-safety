@@ -248,7 +248,7 @@ class SingleChildScrollView extends StatelessWidget {
     final AxisDirection axisDirection = _getDirection(context);
     Widget? contents = child;
     if (padding != null) {
-      contents = Padding(padding: padding!, child: contents);
+      contents = Padding(padding: padding, child: contents);
     }
     final bool effectivePrimary =
         primary ??
@@ -619,7 +619,7 @@ class _RenderSingleChildViewport extends RenderBox
       return RevealedOffset(offset: offset.pixels, rect: rect);
     }
 
-    final RenderBox targetBox = target;
+    final targetBox = target;
     final Matrix4 transform = targetBox.getTransformTo(child);
     final Rect bounds = MatrixUtils.transformRect(transform, rect);
     final Size contentSize = child!.size;

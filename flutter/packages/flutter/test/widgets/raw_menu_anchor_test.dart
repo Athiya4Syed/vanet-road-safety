@@ -68,7 +68,7 @@ void main() {
 
   List<RenderObject> findAncestorRenderTheaters(RenderObject child) {
     final results = <RenderObject>[];
-    RenderObject? node = child;
+    var node = child;
     while (node != null) {
       if (node.runtimeType.toString() == '_RenderTheater') {
         results.add(node);

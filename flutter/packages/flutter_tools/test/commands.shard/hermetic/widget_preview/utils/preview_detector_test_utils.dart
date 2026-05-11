@@ -18,6 +18,7 @@ import 'package:flutter_tools/src/widget_preview/preview_detector.dart';
 import 'package:flutter_tools/src/widget_preview/preview_manifest.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../lib/src/widget_preview/preview_detector.dart' show PreviewDetector;
 import '../../../../src/common.dart';
 import '../../../../src/context.dart';
 import '../../../../src/fakes.dart';

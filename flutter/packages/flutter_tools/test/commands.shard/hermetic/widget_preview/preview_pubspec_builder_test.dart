@@ -129,7 +129,7 @@ flutter:
     pubspecFile.path,
     fileSystem: fileSystem,
     logger: logger,
-  )!;
+  );
 
   @override
   late final Directory directory = fileSystem.directory(projectRoot);

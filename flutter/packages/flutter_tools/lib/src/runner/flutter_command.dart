@@ -9,6 +9,8 @@ import 'package:meta/meta.dart';
 import 'package:package_config/package_config_types.dart';
 import 'package:unified_analytics/unified_analytics.dart';
 
+import '../../../../flutter/lib/src/web.dart' show Event;
+import '../../../../flutter_test/lib/src/web.dart' show Event;
 import '../application_package.dart';
 import '../base/common.dart';
 import '../base/context.dart';

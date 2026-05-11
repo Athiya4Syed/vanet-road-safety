@@ -1019,11 +1019,11 @@ void main() {
       final TextStyle selectedTextStyle = tester
           .renderObject<RenderParagraph>(find.text(_tab1Text))
           .text
-          .style!;
+          .style;
       final TextStyle unselectedTextStyle = tester
           .renderObject<RenderParagraph>(find.text(_tab2Text))
           .text
-          .style!;
+          .style;
 
       // Selected tab should use labelStyle color.
       expect(selectedTabIcon.color, labelStyle.color);
@@ -1058,11 +1058,11 @@ void main() {
       TextStyle selectedTextStyle = tester
           .renderObject<RenderParagraph>(find.text(_tab1Text))
           .text
-          .style!;
+          .style;
       TextStyle unselectedTextStyle = tester
           .renderObject<RenderParagraph>(find.text(_tab2Text))
           .text
-          .style!;
+          .style;
 
       // Selected tab should use the labelStyle color.
       expect(selectedTabIcon.color, labelStyle.color);
@@ -1085,8 +1085,8 @@ void main() {
 
       selectedTabIcon = IconTheme.of(tester.element(find.text(_tab1Text)));
       unselectedTabIcon = IconTheme.of(tester.element(find.text(_tab2Text)));
-      selectedTextStyle = tester.renderObject<RenderParagraph>(find.text(_tab1Text)).text.style!;
-      unselectedTextStyle = tester.renderObject<RenderParagraph>(find.text(_tab2Text)).text.style!;
+      selectedTextStyle = tester.renderObject<RenderParagraph>(find.text(_tab1Text)).text.style;
+      unselectedTextStyle = tester.renderObject<RenderParagraph>(find.text(_tab2Text)).text.style;
 
       // Selected tab should use the labelColor.
       expect(selectedTabIcon.color, labelColor);
@@ -1134,11 +1134,11 @@ void main() {
       TextStyle selectedTextStyle = tester
           .renderObject<RenderParagraph>(find.text(_tab1Text))
           .text
-          .style!;
+          .style;
       TextStyle unselectedTextStyle = tester
           .renderObject<RenderParagraph>(find.text(_tab2Text))
           .text
-          .style!;
+          .style;
 
       // Selected tab should use the [TabBar.labelStyle] color.
       expect(selectedTabIcon.color, labelStyle.color);
@@ -1162,8 +1162,8 @@ void main() {
 
       selectedTabIcon = IconTheme.of(tester.element(find.text(_tab1Text)));
       unselectedTabIcon = IconTheme.of(tester.element(find.text(_tab2Text)));
-      selectedTextStyle = tester.renderObject<RenderParagraph>(find.text(_tab1Text)).text.style!;
-      unselectedTextStyle = tester.renderObject<RenderParagraph>(find.text(_tab2Text)).text.style!;
+      selectedTextStyle = tester.renderObject<RenderParagraph>(find.text(_tab1Text)).text.style;
+      unselectedTextStyle = tester.renderObject<RenderParagraph>(find.text(_tab2Text)).text.style;
 
       // Selected tab should use the [TabBarTheme.labelColor].
       expect(selectedTabIcon.color, labelColor);
@@ -1535,11 +1535,11 @@ void main() {
     final TextStyle selectedTextStyle = tester
         .renderObject<RenderParagraph>(find.text(_tab1Text))
         .text
-        .style!;
+        .style;
     final TextStyle unselectedTextStyle = tester
         .renderObject<RenderParagraph>(find.text(_tab2Text))
         .text
-        .style!;
+        .style;
 
     expect(selectedTabIcon.color, selectedColor);
     expect(unselectedTabIcon.color, unselectedColor);
@@ -1571,11 +1571,11 @@ void main() {
       TextStyle selectedTextStyle = tester
           .renderObject<RenderParagraph>(find.text(_tab1Text))
           .text
-          .style!;
+          .style;
       TextStyle unselectedTextStyle = tester
           .renderObject<RenderParagraph>(find.text(_tab2Text))
           .text
-          .style!;
+          .style;
 
       expect(selectedTabIcon.color, selectedStateColor);
       expect(unselectedTabIcon.color, unselectedStateColor);
@@ -1592,8 +1592,8 @@ void main() {
 
       selectedTabIcon = IconTheme.of(tester.element(find.text(_tab1Text)));
       unselectedTabIcon = IconTheme.of(tester.element(find.text(_tab2Text)));
-      selectedTextStyle = tester.renderObject<RenderParagraph>(find.text(_tab1Text)).text.style!;
-      unselectedTextStyle = tester.renderObject<RenderParagraph>(find.text(_tab2Text)).text.style!;
+      selectedTextStyle = tester.renderObject<RenderParagraph>(find.text(_tab1Text)).text.style;
+      unselectedTextStyle = tester.renderObject<RenderParagraph>(find.text(_tab2Text)).text.style;
 
       expect(selectedTabIcon.color, selectedColor);
       expect(unselectedTabIcon.color, unselectedColor);

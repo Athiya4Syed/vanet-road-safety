@@ -205,7 +205,7 @@ class ResidentWebRunner extends ResidentRunner {
     final vmservice.VmService? service = _connectionResult?.vmService;
     final Uri websocketUri = Uri.parse(_connectionResult!.debugConnection!.uri);
     final Uri httpUri = _httpUriFromWebsocketUri(websocketUri);
-    return _instance ??= FlutterVmService(service!, wsAddress: websocketUri, httpAddress: httpUri);
+    return _instance ??= FlutterVmService(service, wsAddress: websocketUri, httpAddress: httpUri);
   }
 
   FlutterVmService? _instance;
@@ -734,7 +734,7 @@ class ResidentWebRunner extends ResidentRunner {
       // Generates the generated_plugin_registrar
       await injectBuildTimePluginFilesForWebPlatform(
         flutterProject,
-        destination: _generatedEntrypointDirectory!,
+        destination: _generatedEntrypointDirectory,
       );
       // The below works because `injectBuildTimePluginFiles` is configured to write
       // the web_plugin_registrant.dart file alongside the generated main.dart
@@ -812,7 +812,7 @@ class ResidentWebRunner extends ResidentRunner {
       dillOutputPath: dillOutputPath,
       pathToReload: getReloadPath(resetCompiler: resetCompiler, swap: false),
       invalidatedFiles: invalidationResult.uris!,
-      packageConfig: invalidationResult.packageConfig!,
+      packageConfig: invalidationResult.packageConfig,
       trackWidgetCreation: debuggingOptions.buildInfo.trackWidgetCreation,
       shaderCompiler: flutterDevice!.developmentShaderCompiler,
     );
@@ -852,7 +852,7 @@ class ResidentWebRunner extends ResidentRunner {
       unawaited(
         connectDebug!.then((connectionResult) async {
           _connectionResult = connectionResult;
-          final DebugConnection debugConnection = connectionResult!.debugConnection!;
+          final DebugConnection debugConnection = connectionResult!.debugConnection;
           unawaited(debugConnection.onDone.whenComplete(_cleanupAndExit));
 
           void onLogEvent(vmservice.Event event) {

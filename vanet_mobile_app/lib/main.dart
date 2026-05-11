@@ -6,7 +6,7 @@ void main() {
 }
 
 class VanetApp extends StatelessWidget {
-  const VanetApp({Key? key}) : super(key: key);
+  const VanetApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,6 @@ class VanetApp extends StatelessWidget {
         colorScheme: const ColorScheme.dark(
           primary: Color(0xFF1E88E5),
           secondary: Color(0xFF00B0FF),
-          background: Color(0xFF0A0E21),
           surface: Color(0xFF1D1E33),
         ),
         appBarTheme: const AppBarTheme(

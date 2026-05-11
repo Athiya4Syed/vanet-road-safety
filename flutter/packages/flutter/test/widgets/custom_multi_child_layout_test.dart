@@ -292,7 +292,7 @@ void main() {
       final errors = <FlutterErrorDetails>[];
       FlutterError.onError = (FlutterErrorDetails error) => errors.add(error);
       try {
-        await tester.pumpWidget(widget ?? buildSingleChildFrame(delegate!));
+        await tester.pumpWidget(widget ?? buildSingleChildFrame(delegate));
       } finally {
         FlutterError.onError = oldHandler;
       }

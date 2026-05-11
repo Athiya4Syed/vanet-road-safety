@@ -9,7 +9,7 @@ import 'package:yaml/yaml.dart';
 void main() {
   group('parse', () {
     test('returns HttpsConfig when both paths are provided', () {
-      final HttpsConfig result = HttpsConfig.parse('/path/to/cert', '/path/to/key')!;
+      final HttpsConfig result = HttpsConfig.parse('/path/to/cert', '/path/to/key');
       expect(result.certPath, '/path/to/cert');
       expect(result.certKeyPath, '/path/to/key');
     });

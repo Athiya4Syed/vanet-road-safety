@@ -360,7 +360,7 @@ class PaintingContext extends ClipContext {
     assert(!_isRecording);
     _currentLayer = PictureLayer(estimatedBounds);
     _recorder = RendererBinding.instance.createPictureRecorder();
-    _canvas = RendererBinding.instance.createCanvas(_recorder!);
+    _canvas = RendererBinding.instance.createCanvas(_recorder);
     _containerLayer.append(_currentLayer!);
   }
 
@@ -4815,67 +4815,67 @@ mixin SemanticsAnnotationsMixin on RenderObject {
       config.isToggled = _properties.toggled;
     }
     if (_properties.selected != null) {
-      config.isSelected = _properties.selected!;
+      config.isSelected = _properties.selected;
     }
     if (_properties.button != null) {
-      config.isButton = _properties.button!;
+      config.isButton = _properties.button;
     }
     if (_properties.expanded != null) {
       config.isExpanded = _properties.expanded;
     }
     if (_properties.link != null) {
-      config.isLink = _properties.link!;
+      config.isLink = _properties.link;
     }
     if (_properties.linkUrl != null) {
       config.linkUrl = _properties.linkUrl;
     }
     if (_properties.slider != null) {
-      config.isSlider = _properties.slider!;
+      config.isSlider = _properties.slider;
     }
     if (_properties.keyboardKey != null) {
-      config.isKeyboardKey = _properties.keyboardKey!;
+      config.isKeyboardKey = _properties.keyboardKey;
     }
     if (_properties.header != null) {
-      config.isHeader = _properties.header!;
+      config.isHeader = _properties.header;
     }
     if (_properties.headingLevel != null) {
-      config.headingLevel = _properties.headingLevel!;
+      config.headingLevel = _properties.headingLevel;
     }
     if (_properties.textField != null) {
-      config.isTextField = _properties.textField!;
+      config.isTextField = _properties.textField;
     }
     if (_properties.readOnly != null) {
-      config.isReadOnly = _properties.readOnly!;
+      config.isReadOnly = _properties.readOnly;
     }
     if (_properties.focusable != null) {
-      config.isFocusable = _properties.focusable!;
+      config.isFocusable = _properties.focusable;
     }
     if (_properties.focused != null) {
       config.isFocused = _properties.focused;
     }
     if (_properties.accessibilityFocusBlockType != null) {
-      config.accessibilityFocusBlockType = _properties.accessibilityFocusBlockType!;
+      config.accessibilityFocusBlockType = _properties.accessibilityFocusBlockType;
     }
     if (_properties.inMutuallyExclusiveGroup != null) {
-      config.isInMutuallyExclusiveGroup = _properties.inMutuallyExclusiveGroup!;
+      config.isInMutuallyExclusiveGroup = _properties.inMutuallyExclusiveGroup;
     }
     if (_properties.obscured != null) {
-      config.isObscured = _properties.obscured!;
+      config.isObscured = _properties.obscured;
     }
     if (_properties.multiline != null) {
-      config.isMultiline = _properties.multiline!;
+      config.isMultiline = _properties.multiline;
     }
     if (_properties.hidden != null) {
-      config.isHidden = _properties.hidden!;
+      config.isHidden = _properties.hidden;
     }
     if (_properties.image != null) {
-      config.isImage = _properties.image!;
+      config.isImage = _properties.image;
     }
     if (_properties.isRequired != null) {
       config.isRequired = _properties.isRequired;
     }
     if (_properties.identifier != null) {
-      config.identifier = _properties.identifier!;
+      config.identifier = _properties.identifier;
     }
     if (_properties.traversalParentIdentifier != null) {
       config.traversalParentIdentifier = _properties.traversalParentIdentifier;
@@ -4884,34 +4884,34 @@ mixin SemanticsAnnotationsMixin on RenderObject {
       config.traversalChildIdentifier = _properties.traversalChildIdentifier;
     }
     if (_attributedLabel != null) {
-      config.attributedLabel = _attributedLabel!;
+      config.attributedLabel = _attributedLabel;
     }
     if (_attributedValue != null) {
-      config.attributedValue = _attributedValue!;
+      config.attributedValue = _attributedValue;
     }
     if (_attributedIncreasedValue != null) {
-      config.attributedIncreasedValue = _attributedIncreasedValue!;
+      config.attributedIncreasedValue = _attributedIncreasedValue;
     }
     if (_attributedDecreasedValue != null) {
-      config.attributedDecreasedValue = _attributedDecreasedValue!;
+      config.attributedDecreasedValue = _attributedDecreasedValue;
     }
     if (_attributedHint != null) {
-      config.attributedHint = _attributedHint!;
+      config.attributedHint = _attributedHint;
     }
     if (_properties.tooltip != null) {
-      config.tooltip = _properties.tooltip!;
+      config.tooltip = _properties.tooltip;
     }
     if (_properties.hintOverrides != null && _properties.hintOverrides!.isNotEmpty) {
       config.hintOverrides = _properties.hintOverrides;
     }
     if (_properties.scopesRoute != null) {
-      config.scopesRoute = _properties.scopesRoute!;
+      config.scopesRoute = _properties.scopesRoute;
     }
     if (_properties.namesRoute != null) {
-      config.namesRoute = _properties.namesRoute!;
+      config.namesRoute = _properties.namesRoute;
     }
     if (_properties.liveRegion != null) {
-      config.liveRegion = _properties.liveRegion!;
+      config.liveRegion = _properties.liveRegion;
     }
     if (_properties.maxValueLength != null) {
       config.maxValueLength = _properties.maxValueLength;
@@ -4929,7 +4929,7 @@ mixin SemanticsAnnotationsMixin on RenderObject {
       config.addTagForChildren(_properties.tagForChildren!);
     }
     if (properties.role != null) {
-      config.role = _properties.role!;
+      config.role = _properties.role;
     }
     if (_properties.controlsNodes != null) {
       config.controlsNodes = _properties.controlsNodes;
@@ -4939,11 +4939,11 @@ mixin SemanticsAnnotationsMixin on RenderObject {
     }
 
     if (_properties.hitTestBehavior != null) {
-      config.hitTestBehavior = _properties.hitTestBehavior!;
+      config.hitTestBehavior = _properties.hitTestBehavior;
     }
 
     if (_properties.inputType != null) {
-      config.inputType = _properties.inputType!;
+      config.inputType = _properties.inputType;
     }
     if (_properties.minValue != null) {
       config.minValue = _properties.minValue;
@@ -5025,7 +5025,7 @@ mixin SemanticsAnnotationsMixin on RenderObject {
       config.onCollapse = _performCollapse;
     }
     if (_properties.customSemanticsActions != null) {
-      config.customSemanticsActions = _properties.customSemanticsActions!;
+      config.customSemanticsActions = _properties.customSemanticsActions;
     }
   }
 
@@ -5233,7 +5233,7 @@ class _SemanticsConfigurationProvider {
   SemanticsConfiguration get original {
     if (_originalConfiguration == null) {
       _effectiveConfiguration = _originalConfiguration = SemanticsConfiguration();
-      _renderObject.describeSemanticsConfiguration(_originalConfiguration!);
+      _renderObject.describeSemanticsConfiguration(_originalConfiguration);
       assert(
         !_originalConfiguration!.explicitChildNodes ||
             _originalConfiguration!.childConfigurationsDelegate == null,
@@ -5740,7 +5740,7 @@ class _RenderObjectSemantics extends _SemanticsFragment with DiagnosticableTreeM
         if (hasChildConfigurationsDelegate && fragment.configToMergeUp != null) {
           // This fragment need to go through delegate to determine whether it
           // merge up or not.
-          childConfigurations.add(fragment.configToMergeUp!);
+          childConfigurations.add(fragment.configToMergeUp);
           configToFragment[fragment.configToMergeUp!] = fragment;
         } else {
           mergeUp.add(fragment);
@@ -5935,7 +5935,7 @@ class _RenderObjectSemantics extends _SemanticsFragment with DiagnosticableTreeM
 
     // Any node other than producedNode in _semanticsNodes are sibling nodes
     // from children fragments. They share the same tags as the producedNode.
-    final SemanticsNode producedNode = cachedSemanticsNode!;
+    final SemanticsNode producedNode = cachedSemanticsNode;
     for (final SemanticsNode node in semanticsNodes) {
       if (node != producedNode) {
         if (parentData?.tagsForChildren != null) {
@@ -5966,7 +5966,7 @@ class _RenderObjectSemantics extends _SemanticsFragment with DiagnosticableTreeM
       children.addAll(child.semanticsNodes);
     }
 
-    final SemanticsNode node = cachedSemanticsNode!;
+    final SemanticsNode node = cachedSemanticsNode;
     children.removeWhere(shouldDrop);
     if (configProvider.effective.isSemanticBoundary) {
       renderObject.assembleSemanticsNode(node, configProvider.effective, children);
@@ -6072,7 +6072,7 @@ class _RenderObjectSemantics extends _SemanticsFragment with DiagnosticableTreeM
 
   /// Updates the semantics geometry of the cached semantics node.
   void _updateSemanticsNodeGeometry() {
-    final SemanticsNode node = cachedSemanticsNode!;
+    final SemanticsNode node = cachedSemanticsNode;
     final _SemanticsGeometry nodeGeometry = geometry!;
     final bool isSemanticsHidden =
         configProvider.original.isHidden ||
@@ -6134,7 +6134,7 @@ class _RenderObjectSemantics extends _SemanticsFragment with DiagnosticableTreeM
       }
       final SemanticsNode node = entry.key;
       node
-        ..rect = rect!
+        ..rect = rect
         ..transform =
             null // transform has be taking into account when
         // calculating the rect.

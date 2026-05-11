@@ -803,7 +803,7 @@ void main() {
       TapDownDetails? receivedTapDownDetails;
       TapUpDetails? receivedTapUpDetails;
       var tapped = false;
-      final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner!;
+      final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner;
       final key = UniqueKey();
       await tester.pumpWidget(
         MaterialApp(
@@ -851,7 +851,7 @@ void main() {
       LongPressEndDetails? receivedLongPressEndDetails;
       var pressed = false;
       var upped = false;
-      final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner!;
+      final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner;
       final key = UniqueKey();
       await tester.pumpWidget(
         MaterialApp(
@@ -908,7 +908,7 @@ void main() {
       DragStartDetails? receivedDragStartDetails;
       DragUpdateDetails? receivedDragUpdateDetails;
       DragEndDetails? receivedDragEndDetails;
-      final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner!;
+      final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner;
       final key = UniqueKey();
       await tester.pumpWidget(
         MaterialApp(
@@ -965,7 +965,7 @@ void main() {
       DragStartDetails? receivedDragStartDetails;
       DragUpdateDetails? receivedDragUpdateDetails;
       DragEndDetails? receivedDragEndDetails;
-      final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner!;
+      final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner;
       final key = UniqueKey();
       await tester.pumpWidget(
         MaterialApp(
@@ -1022,7 +1022,7 @@ void main() {
       DragStartDetails? receivedDragStartDetails;
       DragUpdateDetails? receivedDragUpdateDetails;
       DragEndDetails? receivedDragEndDetails;
-      final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner!;
+      final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner;
       final key = UniqueKey();
       await tester.pumpWidget(
         MaterialApp(

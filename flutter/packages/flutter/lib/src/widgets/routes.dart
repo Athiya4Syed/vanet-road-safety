@@ -433,8 +433,8 @@ abstract class TransitionRoute<T> extends OverlayRoute<T> implements PredictiveB
       if (current != null) {
         final Animation<double> currentTrain = (current is TrainHoppingAnimation
             ? current.currentTrain
-            : current)!;
-        final Animation<double> nextTrain = nextRoute._animation!;
+            : current);
+        final Animation<double> nextTrain = nextRoute._animation;
         if (currentTrain.value == nextTrain.value || !nextTrain.isAnimating) {
           _setSecondaryAnimation(nextTrain, nextRoute.completed);
         } else {
@@ -1209,8 +1209,8 @@ class _ModalScopeState<T> extends State<_ModalScope<T>> {
                           builder: (BuildContext context, Widget? child) {
                             return widget.route._buildFlexibleTransitions(
                               context,
-                              widget.route.animation!,
-                              widget.route.secondaryAnimation!,
+                              widget.route.animation,
+                              widget.route.secondaryAnimation,
                               // This additional ListenableBuilder is include because if the
                               // value of the userGestureInProgressNotifier changes, it's
                               // only necessary to rebuild the IgnorePointer widget and set
@@ -1234,8 +1234,8 @@ class _ModalScopeState<T> extends State<_ModalScope<T>> {
                               builder: (BuildContext context) {
                                 return widget.route.buildPage(
                                   context,
-                                  widget.route.animation!,
-                                  widget.route.secondaryAnimation!,
+                                  widget.route.animation,
+                                  widget.route.secondaryAnimation,
                                 );
                               },
                             ),

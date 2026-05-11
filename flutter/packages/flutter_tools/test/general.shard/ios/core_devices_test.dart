@@ -26,6 +26,7 @@ import 'package:flutter_tools/src/macos/xcode.dart';
 import 'package:flutter_tools/src/project.dart';
 import 'package:test/fake.dart';
 
+import '../../../lib/src/base/process.dart' show ShutdownHooks;
 import '../../src/common.dart';
 import '../../src/fake_process_manager.dart';
 

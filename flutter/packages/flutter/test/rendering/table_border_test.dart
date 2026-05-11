@@ -159,7 +159,7 @@ void main() {
 
     expect(uniformOuter.isUniform, isFalse);
 
-    final BorderSide topSide = uniformOuter.top;
+    const BorderSide topSide = uniformOuter.top;
     expect(uniformOuter.right, equals(topSide));
     expect(uniformOuter.bottom, equals(topSide));
     expect(uniformOuter.left, equals(topSide));
@@ -186,7 +186,7 @@ void main() {
     expect(borderWithRadius.top.width, isNot(equals(borderWithRadius.bottom.width)));
     expect(borderWithRadius.left.width, isNot(equals(borderWithRadius.right.width)));
 
-    final Color topColor = borderWithRadius.top.color;
+    const Color topColor = borderWithRadius.top.color;
     expect(borderWithRadius.right.color, equals(topColor));
     expect(borderWithRadius.bottom.color, equals(topColor));
     expect(borderWithRadius.left.color, equals(topColor));

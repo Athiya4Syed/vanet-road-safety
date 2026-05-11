@@ -1284,7 +1284,7 @@ void main() {
     final TextStyle selectedTextStyle = tester
         .renderObject<RenderParagraph>(find.text('1 item selected'))
         .text
-        .style!;
+        .style;
     expect(selectedTextStyle.color, equals(selectedTextColor));
 
     await binding.setSurfaceSize(null);

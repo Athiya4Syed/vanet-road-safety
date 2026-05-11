@@ -1434,7 +1434,7 @@ Future<void> main() async {
     expect(tester.getTopLeft(find.byKey(heroABKey)).dy, moreOrLessEquals(100.0, epsilon: 0.1));
 
     bool isVisible(RenderObject node) {
-      RenderObject? currentNode = node;
+      var currentNode = node;
       while (currentNode != null) {
         if (currentNode is RenderAnimatedOpacity && currentNode.opacity.value == 0) {
           return false;
@@ -1448,7 +1448,7 @@ Future<void> main() async {
     final Iterable<RenderObject> renderObjects = find
         .text('Hero')
         .evaluate()
-        .map((Element e) => e.renderObject!);
+        .map((Element e) => e.renderObject);
     await tester.pump(const Duration(milliseconds: 1));
     expect(renderObjects.where(isVisible).length, 1);
 
@@ -1747,17 +1747,17 @@ Future<void> main() async {
 
     await tester.pump(duration * 0.25);
     Rect actualHeroRect = tester.getRect(find.byKey(secondKey));
-    Rect predictedHeroRect = pushRectTween.lerp(curve.transform(0.25))!;
+    Rect predictedHeroRect = pushRectTween.lerp(curve.transform(0.25));
     expect(actualHeroRect, within<Rect>(distance: epsilon, from: predictedHeroRect));
 
     await tester.pump(duration * 0.25);
     actualHeroRect = tester.getRect(find.byKey(secondKey));
-    predictedHeroRect = pushRectTween.lerp(curve.transform(0.5))!;
+    predictedHeroRect = pushRectTween.lerp(curve.transform(0.5));
     expect(actualHeroRect, within<Rect>(distance: epsilon, from: predictedHeroRect));
 
     await tester.pump(duration * 0.25);
     actualHeroRect = tester.getRect(find.byKey(secondKey));
-    predictedHeroRect = pushRectTween.lerp(curve.transform(0.75))!;
+    predictedHeroRect = pushRectTween.lerp(curve.transform(0.75));
     expect(actualHeroRect, within<Rect>(distance: epsilon, from: predictedHeroRect));
 
     await tester.pumpAndSettle();
@@ -1778,17 +1778,17 @@ Future<void> main() async {
 
     await tester.pump(duration * 0.25);
     actualHeroRect = tester.getRect(find.byKey(firstKey));
-    predictedHeroRect = popRectTween.lerp(curve.transform(0.25))!;
+    predictedHeroRect = popRectTween.lerp(curve.transform(0.25));
     expect(actualHeroRect, within<Rect>(distance: epsilon, from: predictedHeroRect));
 
     await tester.pump(duration * 0.25);
     actualHeroRect = tester.getRect(find.byKey(firstKey));
-    predictedHeroRect = popRectTween.lerp(curve.transform(0.5))!;
+    predictedHeroRect = popRectTween.lerp(curve.transform(0.5));
     expect(actualHeroRect, within<Rect>(distance: epsilon, from: predictedHeroRect));
 
     await tester.pump(duration * 0.25);
     actualHeroRect = tester.getRect(find.byKey(firstKey));
-    predictedHeroRect = popRectTween.lerp(curve.transform(0.75))!;
+    predictedHeroRect = popRectTween.lerp(curve.transform(0.75));
     expect(actualHeroRect, within<Rect>(distance: epsilon, from: predictedHeroRect));
 
     await tester.pumpAndSettle();

@@ -171,7 +171,7 @@ class WidgetPreviewDtdServices {
   String _withUuid(String name) => addUuidToServiceName ? '$name-$serviceUuid' : name;
 
   Future<void> _registerServices() async {
-    final DartToolingDaemon dtd = _dtd!;
+    final DartToolingDaemon dtd = _dtd;
     dtd.onEvent(widgetPreviewScaffoldStream).listen((DTDEvent event) {
       if (event.kind == kWidgetPreviewConnectedEvent) {
         previewAnalytics.reportPreviewerConnected();

@@ -88,7 +88,7 @@ void main() {
         ),
       ),
     );
-    final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner!;
+    final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner;
     final int scrollableId = semantics
         .nodesWith(
           actions: <SemanticsAction>[SemanticsAction.scrollUp, SemanticsAction.scrollToOffset],
@@ -120,7 +120,7 @@ void main() {
         ),
       ),
     );
-    final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner!;
+    final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner;
     final int scrollableId = semantics
         .nodesWith(
           actions: <SemanticsAction>[SemanticsAction.scrollLeft, SemanticsAction.scrollToOffset],
@@ -793,7 +793,7 @@ void main() {
       final SemanticsNode innerListPane = semantics
           .nodesWith(ancestor: rootScrollNode, scrollExtentMax: 0)
           .single;
-      final SemanticsNode outerListPane = innerListPane.parent!;
+      final SemanticsNode outerListPane = innerListPane.parent;
       final List<SemanticsNode> hiddenNodes = semantics
           .nodesWith(flags: <SemanticsFlag>[SemanticsFlag.isHidden])
           .toList();

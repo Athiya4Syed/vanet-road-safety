@@ -26,6 +26,7 @@ import 'package:test/fake.dart';
 import 'package:unified_analytics/testing.dart';
 import 'package:unified_analytics/unified_analytics.dart';
 
+import '../../../lib/src/reporting/crash_reporting.dart' show CrashReporter;
 import '../../src/common.dart';
 import '../../src/context.dart';
 import '../../src/fake_http_client.dart';

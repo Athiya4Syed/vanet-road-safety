@@ -3,7 +3,7 @@ import '../services/api_service.dart';
 import '../models/pothole_model.dart';
 
 class VerifiedPotholesScreen extends StatefulWidget {
-  const VerifiedPotholesScreen({Key? key}) : super(key: key);
+  const VerifiedPotholesScreen({super.key});
 
   @override
   State<VerifiedPotholesScreen> createState() => _VerifiedPotholesScreenState();

@@ -91,7 +91,7 @@ void main() {
       const blur2 = ImageFilterConfig.blur(sigmaX: 10.1, sigmaY: 10.1);
       const config = ImageFilterConfig.compose(outer: blur1, inner: blur2);
 
-      final expectedShortDescription =
+      const expectedShortDescription =
           '${blur2.debugShortDescription} -> ${blur1.debugShortDescription}';
       expect(config.debugShortDescription, expectedShortDescription);
       expect(

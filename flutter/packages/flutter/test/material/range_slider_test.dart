@@ -3828,6 +3828,6 @@ class LoggingRangeSliderValueIndicatorShape extends RangeSliderValueIndicatorSha
     double? value,
     Thumb? thumb,
   }) {
-    logLabel.add(labelPainter.text!);
+    logLabel.add(labelPainter.text);
   }
 }

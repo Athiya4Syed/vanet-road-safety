@@ -554,6 +554,7 @@ class _AdaptiveAboutDialog extends AboutDialog {
           ),
         ];
     }
+    return null;
   }
 
   @override

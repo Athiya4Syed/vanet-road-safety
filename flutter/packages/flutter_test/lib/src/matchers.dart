@@ -2122,7 +2122,7 @@ class _MatchAnythingExceptClip extends _FailWithDescriptionMatcher {
     if (nodes.length != 1) {
       return failWithDescription(matchState, 'did not have a exactly one child element');
     }
-    final RenderObject renderObject = nodes.single.renderObject!;
+    final RenderObject renderObject = nodes.single.renderObject;
 
     switch (renderObject.runtimeType) {
       case const (RenderClipPath):
@@ -2157,7 +2157,7 @@ abstract class _MatchRenderObject<M extends RenderObject, T extends RenderObject
     if (nodes.length != 1) {
       return failWithDescription(matchState, 'did not have a exactly one child element');
     }
-    final RenderObject renderObject = nodes.single.renderObject!;
+    final RenderObject renderObject = nodes.single.renderObject;
 
     if (renderObject.runtimeType == T) {
       return renderObjectMatchesT(matchState, renderObject as T);
@@ -2205,7 +2205,7 @@ class _RendersOnPhysicalModel extends _MatchRenderObject<RenderPhysicalShape, Re
     }
     final shapeClipper = renderObject.clipper! as ShapeBorderClipper;
 
-    if (borderRadius != null && !assertRoundedRectangle(shapeClipper, borderRadius!, matchState)) {
+    if (borderRadius != null && !assertRoundedRectangle(shapeClipper, borderRadius, matchState)) {
       return false;
     }
 
@@ -2500,7 +2500,7 @@ class _ColorSwatchMatcher<T> extends Matcher {
       }
 
       for (final T key in _target.keys) {
-        final matcher = _ColorMatcher(_target[key]!, _threshold);
+        final matcher = _ColorMatcher(_target[key], _threshold);
         if (!matcher.matches(item[key], matchState)) {
           return false;
         }
@@ -2805,26 +2805,26 @@ class _MatchesSemanticsData extends Matcher {
       description.add(' with label: ${_escape(label!)}');
     }
     if (attributedLabel != null) {
-      description.add(' with attributedLabel: ${_escapeAttributedString(attributedLabel!)}');
+      description.add(' with attributedLabel: ${_escapeAttributedString(attributedLabel)}');
     }
     if (value != null) {
       description.add(' with value: ${_escape(value!)}');
     }
     if (attributedValue != null) {
-      description.add(' with attributedValue: ${_escapeAttributedString(attributedValue!)}');
+      description.add(' with attributedValue: ${_escapeAttributedString(attributedValue)}');
     }
     if (hint != null) {
       description.add(' with hint: ${_escape(hint!)}');
     }
     if (attributedHint != null) {
-      description.add(' with attributedHint: ${_escapeAttributedString(attributedHint!)}');
+      description.add(' with attributedHint: ${_escapeAttributedString(attributedHint)}');
     }
     if (increasedValue != null) {
       description.add(' with increasedValue: ${_escape(increasedValue!)} ');
     }
     if (attributedIncreasedValue != null) {
       description.add(
-        ' with attributedIncreasedValue: ${_escapeAttributedString(attributedIncreasedValue!)}',
+        ' with attributedIncreasedValue: ${_escapeAttributedString(attributedIncreasedValue)}',
       );
     }
     if (decreasedValue != null) {
@@ -2832,7 +2832,7 @@ class _MatchesSemanticsData extends Matcher {
     }
     if (attributedDecreasedValue != null) {
       description.add(
-        ' with attributedDecreasedValue: ${_escapeAttributedString(attributedDecreasedValue!)}',
+        ' with attributedDecreasedValue: ${_escapeAttributedString(attributedDecreasedValue)}',
       );
     }
     if (tooltip != null) {
@@ -3099,7 +3099,7 @@ class _MatchesSemanticsData extends Matcher {
     if (customActions != null || hintOverrides != null) {
       final List<CustomSemanticsAction> providedCustomActions =
           data.customSemanticsActionIds?.map<CustomSemanticsAction>((int id) {
-            return CustomSemanticsAction.getAction(id)!;
+            return CustomSemanticsAction.getAction(id);
           }).toList() ??
           <CustomSemanticsAction>[];
       final List<CustomSemanticsAction> expectedCustomActions =

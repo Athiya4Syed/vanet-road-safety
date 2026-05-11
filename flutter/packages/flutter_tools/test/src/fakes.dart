@@ -26,6 +26,16 @@ import 'package:flutter_tools/src/resident_runner.dart';
 import 'package:flutter_tools/src/version.dart';
 import 'package:test/fake.dart';
 
+import '../../../flutter/test/widgets/test_border.dart' show Logger;
+
+import '../../../fuchsia_remote_debug_protocol/lib/logging.dart' show Logger;
+
+import '../../../fuchsia_remote_debug_protocol/lib/src/common/logging.dart' show Logger;
+
+import '../../lib/src/base/logger.dart' show Logger;
+
+import '../../lib/src/base/process.dart' show ShutdownHooks;
+
 /// Environment with DYLD_LIBRARY_PATH=/path/to/libraries
 class FakeDyldEnvironmentArtifact extends ArtifactSet {
   FakeDyldEnvironmentArtifact() : super(DevelopmentArtifact.iOS);

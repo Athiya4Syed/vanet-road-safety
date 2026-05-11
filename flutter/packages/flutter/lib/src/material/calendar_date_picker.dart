@@ -1212,7 +1212,7 @@ class _DayState extends State<_Day> {
     final OutlinedBorder dayShape = resolve<OutlinedBorder?>(
       (DatePickerThemeData? theme) => theme?.dayShape,
       states,
-    )!;
+    );
     final decoration = widget.isToday
         ? ShapeDecoration(
             color: dayBackgroundColor,
@@ -1474,7 +1474,7 @@ class _YearPickerState extends State<YearPicker> {
     final OutlinedBorder yearShape = resolve<OutlinedBorder?>(
       (DatePickerThemeData? theme) => theme?.yearShape,
       states,
-    )!;
+    );
 
     BorderSide? borderSide;
     if (isCurrentYear) {

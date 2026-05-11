@@ -4,6 +4,10 @@
 
 import 'package:unified_analytics/unified_analytics.dart';
 
+import '../../../test/general.shard/ios/devices_test.dart' show FakeAnalytics;
+import '../../../test/general.shard/ios/ios_device_install_test.dart' show FakeAnalytics;
+import '../../../test/general.shard/ios/ios_device_project_test.dart' show FakeAnalytics;
+import '../../../test/general.shard/ios/ios_device_start_prebuilt_test.dart' show FakeAnalytics;
 import '../base/config.dart';
 import '../base/io.dart';
 import '../features.dart';

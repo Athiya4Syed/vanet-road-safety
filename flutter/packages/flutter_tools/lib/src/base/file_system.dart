@@ -2,11 +2,14 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'dart:io' show Link;
+
 import 'package:file/file.dart';
 import 'package:file/local.dart' as local_fs;
 import 'package:meta/meta.dart';
 
 import 'common.dart';
+import 'file_system.dart' as local_fs show LocalFileSystem;
 import 'io.dart';
 import 'platform.dart';
 import 'process.dart';

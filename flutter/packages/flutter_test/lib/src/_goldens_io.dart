@@ -214,8 +214,8 @@ Future<ComparisonResult> compareLists(List<int>? test, List<int>? master) async 
 
   var pixelDiffCount = 0;
   final int totalPixels = width * height;
-  final ByteData invertedMasterRgba = _invert(masterImageRgba!);
-  final ByteData invertedTestRgba = _invert(testImageRgba!);
+  final ByteData invertedMasterRgba = _invert(masterImageRgba);
+  final ByteData invertedTestRgba = _invert(testImageRgba);
 
   final Uint8List testImageBytes = (await testImage.toByteData())!.buffer.asUint8List();
   final maskedDiffRgba = ByteData(testImageBytes.length);

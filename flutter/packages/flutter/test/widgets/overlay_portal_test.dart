@@ -76,7 +76,7 @@ void verifyOverlayChildReadyForLayout(GlobalKey overlayWidgetKey) {
 
 List<RenderObject> _ancestorRenderTheaters(RenderObject child) {
   final results = <RenderObject>[];
-  RenderObject? node = child;
+  var node = child;
   while (node != null) {
     if (node.runtimeType.toString() == '_RenderTheater') {
       results.add(node);
@@ -901,7 +901,7 @@ void main() {
 
     // Make the widget's render object dirty and verifies in the LayoutBuilder's
     // callback that the widget's render object is already laid out.
-    final RenderObject renderChild1 = widgetKey.currentContext!.findRenderObject()!;
+    final RenderObject renderChild1 = widgetKey.currentContext!.findRenderObject();
     renderChild1.markNeedsLayout();
     // Dirty both render subtree branches.
     childBox.markNeedsLayout();
@@ -2717,7 +2717,7 @@ void main() {
       expect(childrenVisited.length, 3);
       expect(
         childrenVisited,
-        containsAllInOrder(<RenderObject>[child1Box.parent!, child2Box.parent!]),
+        containsAllInOrder(<RenderObject>[child1Box.parent, child2Box.parent]),
       );
       childrenVisited.clear();
 
@@ -2729,7 +2729,7 @@ void main() {
       // The child list stays the same.
       expect(
         childrenVisited,
-        containsAllInOrder(<RenderObject>[child1Box.parent!, child2Box.parent!]),
+        containsAllInOrder(<RenderObject>[child1Box.parent, child2Box.parent]),
       );
     });
   });

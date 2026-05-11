@@ -392,7 +392,7 @@ void main() {
         return;
       }
 
-      final CCompilerConfig result = (await cCompilerConfigMacOS(throwIfNotFound: true))!;
+      final CCompilerConfig result = (await cCompilerConfigMacOS(throwIfNotFound: true));
       expect(
         result.compiler,
         Uri.file(
@@ -430,7 +430,7 @@ void main() {
         return;
       }
 
-      final CCompilerConfig result = (await cCompilerConfigMacOS(throwIfNotFound: true))!;
+      final CCompilerConfig result = (await cCompilerConfigMacOS(throwIfNotFound: true));
       expect(result.compiler, Uri.file('/nix/store/random-path-to-clang-wrapper/bin/clang'));
       expect(result.archiver, Uri.file('/nix/store/random-path-to-clang-wrapper/bin/ar'));
       expect(result.linker, Uri.file('/nix/store/random-path-to-clang-wrapper/bin/ld'));

@@ -127,7 +127,7 @@ class LoggingValueIndicatorShape extends SliderComponentShape {
     required double textScaleFactor,
     required Size sizeWithOverflow,
   }) {
-    logLabel.add(labelPainter.text!);
+    logLabel.add(labelPainter.text);
   }
 }
 
@@ -1984,7 +1984,7 @@ void main() {
                   value: value,
                   overlayColor: WidgetStateColor.resolveWith((Set<WidgetState> states) {
                     if (states.contains(WidgetState.focused)) {
-                      return Colors.purple[500]!;
+                      return Colors.purple[500];
                     }
 
                     return Colors.transparent;
@@ -2114,7 +2114,7 @@ void main() {
                   value: value,
                   overlayColor: WidgetStateColor.resolveWith((Set<WidgetState> states) {
                     if (states.contains(WidgetState.hovered)) {
-                      return Colors.cyan[500]!;
+                      return Colors.cyan[500];
                     }
 
                     return Colors.transparent;
@@ -2266,7 +2266,7 @@ void main() {
                   focusNode: focusNode,
                   overlayColor: WidgetStateColor.resolveWith((Set<WidgetState> states) {
                     if (states.contains(WidgetState.dragged)) {
-                      return Colors.lime[500]!;
+                      return Colors.lime[500];
                     }
 
                     return Colors.transparent;
@@ -2800,7 +2800,7 @@ void main() {
     'Slider gains keyboard focus when it gains semantics focus on Windows',
     (WidgetTester tester) async {
       final semantics = SemanticsTester(tester);
-      final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner!;
+      final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner;
       final focusNode = FocusNode();
       addTearDown(focusNode.dispose);
       await tester.pumpWidget(

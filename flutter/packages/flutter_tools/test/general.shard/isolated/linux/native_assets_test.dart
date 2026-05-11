@@ -93,7 +93,7 @@ void main() {
       await fileSystem.file('/some/path/to/llvm-ar').create();
       await fileSystem.file('/some/path/to/ld.lld').create();
 
-      final CCompilerConfig result = (await cCompilerConfigLinux(throwIfNotFound: true))!;
+      final CCompilerConfig result = (await cCompilerConfigLinux(throwIfNotFound: true));
       expect(result.compiler, Uri.file('/some/path/to/clang'));
     },
   );
@@ -115,7 +115,7 @@ void main() {
         await fileSystem.file('/path/to/$execName').create(recursive: true);
       }
 
-      final CCompilerConfig result = (await cCompilerConfigLinux(throwIfNotFound: true))!;
+      final CCompilerConfig result = (await cCompilerConfigLinux(throwIfNotFound: true));
       expect(result.linker, Uri.file('/path/to/ld'));
       expect(result.compiler, Uri.file('/path/to/clang'));
       expect(result.archiver, Uri.file('/path/to/ar'));

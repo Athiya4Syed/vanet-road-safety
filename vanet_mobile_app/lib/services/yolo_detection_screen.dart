@@ -20,7 +20,6 @@ class _YoloDetectionScreenState extends State<YoloDetectionScreen> {
   Future<void> _pickImage() async {
     final XFile? image = await _picker.pickImage(
       source: ImageSource.gallery,
-      imageQuality: 80,
     );
     if (image != null) {
       final bytes = await image.readAsBytes();
@@ -33,46 +32,43 @@ class _YoloDetectionScreenState extends State<YoloDetectionScreen> {
   }
 
   Future<void> _detectPothole() async {
-  if (_imageBytes == null) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Please select an image first')),
-    );
-    return;
+    if (_imageBytes == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please select an image first')),
+      );
+      return;
+    }
+
+    setState(() => _isDetecting = true);
+
+    try {
+      final result = await ApiService.detectPothole(
+        imageBytes: _imageBytes!,
+        latitude: 15.2968,
+        longitude: 75.6250,
+      );
+      setState(() => _result = result);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('❌ Error: $e'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } finally {
+      setState(() => _isDetecting = false);
+    }
   }
 
-  setState(() => _isDetecting = true);
-
-  // Show waiting message
-  ScaffoldMessenger.of(context).showSnackBar(
-    const SnackBar(
-      content: Text('⏳ Waking up AI server... please wait 30 seconds'),
-      duration: Duration(seconds: 30),
-      backgroundColor: Colors.orange,
-    ),
-  );
-
-  try {
-    final result = await ApiService.detectPothole(
-      imageBytes: _imageBytes!,
-      latitude: 15.2968,
-      longitude: 75.6250,
-    );
-
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    setState(() => _result = result);
-
-  } catch (e) {
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('❌ Error: $e'),
-        backgroundColor: Colors.red,
-      ),
-    );
-  } finally {
-    setState(() => _isDetecting = false);
+  Color _getSeverityColor(String severity) {
+    switch (severity.toUpperCase()) {
+      case 'LOW': return Colors.green;
+      case 'MEDIUM': return Colors.orange;
+      case 'HIGH': return Colors.red;
+      case 'CRITICAL': return Colors.purple;
+      default: return Colors.grey;
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -90,6 +86,7 @@ class _YoloDetectionScreenState extends State<YoloDetectionScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
             // Info Card
             Container(
               padding: const EdgeInsets.all(16),
@@ -102,7 +99,8 @@ class _YoloDetectionScreenState extends State<YoloDetectionScreen> {
               ),
               child: const Row(
                 children: [
-                  Icon(Icons.info_outline, color: Color(0xFF1E88E5), size: 20),
+                  Icon(Icons.info_outline,
+                      color: Color(0xFF1E88E5), size: 20),
                   SizedBox(width: 12),
                   Expanded(
                     child: Text(
@@ -283,8 +281,7 @@ class _YoloDetectionScreenState extends State<YoloDetectionScreen> {
                       const Divider(color: Colors.grey, height: 24),
                       _ResultRow(
                         label: 'Confidence',
-                        value:
-                            '${((_result!['confidence'] ?? 0) * 100).toStringAsFixed(1)}%',
+                        value: '${((_result!['confidence'] ?? 0) * 100).toStringAsFixed(1)}%',
                         color: Colors.white,
                       ),
                       const SizedBox(height: 8),
@@ -297,11 +294,9 @@ class _YoloDetectionScreenState extends State<YoloDetectionScreen> {
                       _ResultRow(
                         label: 'Auto Reported',
                         value: _result!['auto_reported'] == true
-                            ? '✅ Yes'
-                            : '❌ No',
+                            ? '✅ Yes' : '❌ No',
                         color: _result!['auto_reported'] == true
-                            ? Colors.green
-                            : Colors.red,
+                            ? Colors.green : Colors.red,
                       ),
                     ],
                   ],
@@ -332,9 +327,8 @@ class _ResultRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(label, style: const TextStyle(color: Colors.grey, fontSize: 14)),
-        Text(value,
-            style: TextStyle(
-                color: color, fontSize: 14, fontWeight: FontWeight.bold)),
+        Text(value, style: TextStyle(
+          color: color, fontSize: 14, fontWeight: FontWeight.bold)),
       ],
     );
   }

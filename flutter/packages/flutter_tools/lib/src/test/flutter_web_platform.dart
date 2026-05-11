@@ -24,6 +24,7 @@ import '../base/file_system.dart';
 import '../base/io.dart';
 import '../base/logger.dart';
 import '../build_info.dart';
+import '../build_system/build_system.dart' show Environment;
 import '../cache.dart';
 import '../convert.dart';
 import '../dart/package_map.dart';

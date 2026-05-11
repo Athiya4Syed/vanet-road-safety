@@ -246,7 +246,7 @@ class ModalBarrier extends StatelessWidget {
         cursor: SystemMouseCursors.basic,
         child: ConstrainedBox(
           constraints: const BoxConstraints.expand(),
-          child: color == null ? null : ColoredBox(color: color!),
+          child: color == null ? null : ColoredBox(color: color),
         ),
       ),
     );
@@ -258,7 +258,7 @@ class ModalBarrier extends StatelessWidget {
     final bool excluding = !semanticsDismissible || !modalBarrierSemanticsDismissible;
 
     if (!excluding && clipDetailsNotifier != null) {
-      barrier = _SemanticsClipper(clipDetailsNotifier: clipDetailsNotifier!, child: barrier);
+      barrier = _SemanticsClipper(clipDetailsNotifier: clipDetailsNotifier, child: barrier);
     }
 
     return BlockSemantics(

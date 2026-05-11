@@ -529,7 +529,7 @@ void main() {
     expect(semantics, hasSemantics(expectedSemantics));
 
     // Do the actions work?
-    final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner!;
+    final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner;
     var expectedLength = 1;
     for (final action in allActions) {
       switch (action) {
@@ -726,7 +726,7 @@ void main() {
       ],
     );
 
-    final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner!;
+    final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner;
 
     expect(semantics, hasSemantics(expectedSemantics));
     semanticsOwner.performAction(expectedId, SemanticsAction.tap);
@@ -1868,7 +1868,7 @@ void main() {
       ),
     );
 
-    final SemanticsNode node = RendererBinding.instance.renderView.debugSemantics!;
+    final SemanticsNode node = RendererBinding.instance.renderView.debugSemantics;
 
     expect(node.transform, null); // Make sure the zero transform didn't end up on the root somehow.
     expect(node.childrenCount, 0);

@@ -89,7 +89,7 @@ void main() {
     final ImageStreamCompleter cacheStream = otherCache.putIfAbsent(
       imageProvider,
       () => imageProvider.loadBuffer(imageProvider, basicDecoder),
-    )!;
+    );
     final ImageStream stream = imageProvider.resolve(ImageConfiguration.empty);
     final completer = Completer<void>();
     final cacheCompleter = Completer<void>();

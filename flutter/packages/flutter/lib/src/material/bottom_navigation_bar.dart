@@ -573,7 +573,7 @@ class _BottomNavigationTile extends StatelessWidget {
         child: _Tile(
           layout: layout,
           icon: _TileIcon(
-            colorTween: iconColorTween!,
+            colorTween: iconColorTween,
             animation: animation,
             iconSize: iconSize,
             selected: selected,
@@ -582,7 +582,7 @@ class _BottomNavigationTile extends StatelessWidget {
             unselectedIconTheme: unselectedIconTheme,
           ),
           label: _Label(
-            colorTween: labelColorTween!,
+            colorTween: labelColorTween,
             animation: animation,
             item: item,
             selectedLabelStyle: selectedLabelStyle,
@@ -723,7 +723,7 @@ class _Label extends StatelessWidget {
       unselectedLabelStyle,
       selectedLabelStyle,
       animation.value,
-    )!;
+    );
     Widget text = DefaultTextStyle.merge(
       style: customStyle.copyWith(
         fontSize: selectedFontSize,
@@ -868,7 +868,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBar> with TickerPr
   void _pushCircle(int index) {
     if (widget.items[index].backgroundColor != null) {
       _circles.add(
-        _Circle(state: this, index: index, color: widget.items[index].backgroundColor!, vsync: this)
+        _Circle(state: this, index: index, color: widget.items[index].backgroundColor, vsync: this)
           ..controller.addStatusListener((AnimationStatus status) {
             if (status.isCompleted) {
               setState(() {

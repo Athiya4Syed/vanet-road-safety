@@ -22,7 +22,7 @@ import '../test_utils.dart' show ProcessResultMatcher, fileSystem, flutterBin, p
 import '../transition_test_utils.dart';
 import 'native_assets_test_utils.dart';
 
-final String hostOs = platform.operatingSystem;
+const String hostOs = platform.operatingSystem;
 const packageName = 'data_asset_example';
 const packageNameDependency = 'data_asset_dependency';
 

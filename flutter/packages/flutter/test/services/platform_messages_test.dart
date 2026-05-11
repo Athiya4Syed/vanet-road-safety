@@ -12,7 +12,7 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   test('Mock binary message handler control test', () async {
-    final List<ByteData?> log = <ByteData>[];
+    final log = <ByteData>[];
 
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMessageHandler(
       'test1',

@@ -236,7 +236,7 @@ void main() {
       );
       await msvcBinDir.create(recursive: true);
 
-      final CCompilerConfig result = (await cCompilerConfigWindows())!;
+      final CCompilerConfig result = (await cCompilerConfigWindows());
       expect(result.compiler.toFilePath(), msvcBinDir.childFile('cl.exe').uri.toFilePath());
       expect(result.archiver.toFilePath(), msvcBinDir.childFile('lib.exe').uri.toFilePath());
       expect(result.linker.toFilePath(), msvcBinDir.childFile('link.exe').uri.toFilePath());

@@ -131,7 +131,7 @@ Finder findBorderPainter() {
 }
 
 double getBorderBottom(WidgetTester tester) {
-  final RenderBox box = InputDecorator.containerOf(tester.element(findBorderPainter()))!;
+  final RenderBox box = InputDecorator.containerOf(tester.element(findBorderPainter()));
   return box.size.height;
 }
 
@@ -206,7 +206,7 @@ TextStyle getHintStyle(WidgetTester tester) {
   return tester
       .widget<RichText>(find.descendant(of: findHint(), matching: find.byType(RichText)))
       .text
-      .style!;
+      .style;
 }
 
 Rect getHelperRect(WidgetTester tester) {
@@ -217,7 +217,7 @@ TextStyle getHelperStyle(WidgetTester tester) {
   return tester
       .widget<RichText>(find.descendant(of: findHelper(), matching: find.byType(RichText)))
       .text
-      .style!;
+      .style;
 }
 
 Finder findError() {
@@ -232,7 +232,7 @@ TextStyle getErrorStyle(WidgetTester tester) {
   return tester
       .widget<RichText>(find.descendant(of: findError(), matching: find.byType(RichText)))
       .text
-      .style!;
+      .style;
 }
 
 Finder findCounter() {
@@ -247,7 +247,7 @@ TextStyle getCounterStyle(WidgetTester tester) {
   return tester
       .widget<RichText>(find.descendant(of: findCounter(), matching: find.byType(RichText)))
       .text
-      .style!;
+      .style;
 }
 
 Finder findDecorator() {
@@ -263,7 +263,7 @@ Offset getDecoratorCenter(WidgetTester tester) {
 }
 
 Rect getContainerRect(WidgetTester tester) {
-  final RenderBox box = InputDecorator.containerOf(tester.element(findBorderPainter()))!;
+  final RenderBox box = InputDecorator.containerOf(tester.element(findBorderPainter()));
   return box.paintBounds;
 }
 
@@ -2149,7 +2149,7 @@ void main() {
         }
 
         await tester.pumpWidget(buildFrame(TextDirection.ltr));
-        RenderBox borderBox = InputDecorator.containerOf(tester.element(findBorderPainter()))!;
+        RenderBox borderBox = InputDecorator.containerOf(tester.element(findBorderPainter()));
         // Convert label bottom left offset to border path coordinate system.
         final Offset labelBottomLeftLocalToBorder = borderBox.globalToLocal(
           getLabelRect(tester).bottomLeft,
@@ -2172,7 +2172,7 @@ void main() {
         );
 
         await tester.pumpWidget(buildFrame(TextDirection.rtl));
-        borderBox = InputDecorator.containerOf(tester.element(findBorderPainter()))!;
+        borderBox = InputDecorator.containerOf(tester.element(findBorderPainter()));
         // Convert label bottom right offset to border path coordinate system.
         final Offset labelBottomRightLocalToBorder = borderBox.globalToLocal(
           getLabelRect(tester).bottomRight,
@@ -2225,7 +2225,7 @@ void main() {
 
       await tester.pumpWidget(buildFrame(TextDirection.ltr));
       Rect labelRect = getLabelRect(tester);
-      RenderBox borderBox = InputDecorator.containerOf(tester.element(findBorderPainter()))!;
+      RenderBox borderBox = InputDecorator.containerOf(tester.element(findBorderPainter()));
       expect(
         findBorderPainter(),
         paints
@@ -2247,7 +2247,7 @@ void main() {
 
       await tester.pumpWidget(buildFrame(TextDirection.rtl));
       labelRect = getLabelRect(tester);
-      borderBox = InputDecorator.containerOf(tester.element(findBorderPainter()))!;
+      borderBox = InputDecorator.containerOf(tester.element(findBorderPainter()));
       expect(
         findBorderPainter(),
         paints
@@ -2298,7 +2298,7 @@ void main() {
         }
 
         await tester.pumpWidget(buildFrame(TextDirection.ltr));
-        RenderBox borderBox = InputDecorator.containerOf(tester.element(findBorderPainter()))!;
+        RenderBox borderBox = InputDecorator.containerOf(tester.element(findBorderPainter()));
         expect(
           findBorderPainter(),
           paints
@@ -2313,7 +2313,7 @@ void main() {
         );
 
         await tester.pumpWidget(buildFrame(TextDirection.rtl));
-        borderBox = InputDecorator.containerOf(tester.element(findBorderPainter()))!;
+        borderBox = InputDecorator.containerOf(tester.element(findBorderPainter()));
         expect(
           findBorderPainter(),
           paints
@@ -6306,7 +6306,7 @@ void main() {
     }
 
     TextStyle getPrefixIconStyle(WidgetTester tester) {
-      return tester.widget<RichText>(findPrefixIconInnerRichText()).text.style!;
+      return tester.widget<RichText>(findPrefixIconInnerRichText()).text.style;
     }
 
     Finder findSuffixIcon() {
@@ -6322,7 +6322,7 @@ void main() {
     }
 
     TextStyle getSuffixIconStyle(WidgetTester tester) {
-      return tester.widget<RichText>(findSuffixIconInnerRichText()).text.style!;
+      return tester.widget<RichText>(findSuffixIconInnerRichText()).text.style;
     }
 
     group('for filled text field', () {
@@ -8129,7 +8129,7 @@ void main() {
 
     final RenderObject renderer = tester.renderObject(find.byType(InputDecorator));
     final Iterable<String> nodeNames = renderer.debugDescribeChildren().map(
-      (DiagnosticsNode node) => node.name!,
+      (DiagnosticsNode node) => node.name,
     );
     expect(
       nodeNames,
@@ -8149,7 +8149,7 @@ void main() {
     );
 
     final nodeValues = Set<Object>.of(
-      renderer.debugDescribeChildren().map<Object>((DiagnosticsNode node) => node.value!),
+      renderer.debugDescribeChildren().map<Object>((DiagnosticsNode node) => node.value),
     );
     expect(nodeValues.length, 11);
   });
@@ -9909,7 +9909,7 @@ void main() {
             find.descendant(of: find.text(prefixLabel), matching: find.byType(RichText)),
           )
           .text
-          .style!;
+          .style;
       expect(effectivePrefixStyle.color, prefixStyle.color);
     });
 
@@ -9959,7 +9959,7 @@ void main() {
             find.descendant(of: find.text(suffixLabel), matching: find.byType(RichText)),
           )
           .text
-          .style!;
+          .style;
       expect(effectiveSuffixStyle.color, suffixStyle.color);
     });
 
@@ -12881,13 +12881,13 @@ void main() {
           );
 
           // Vertical components: contentPadding.vertical, densityOffset.y, child
-          final double childVerticalSpaceAffordance =
+          const double childVerticalSpaceAffordance =
               totalHeight - visualDensity.baseSizeAdjustment.dy - contentPadding.vertical;
 
           // TextAlignVertical.center is specified so `child` needs to be centered
           // in the available space.
           final double childMargin = (childVerticalSpaceAffordance - childHeight) / 2;
-          final double childTop =
+          const double childTop =
               visualDensity.baseSizeAdjustment.dy / 2.0 + contentPadding.top + childMargin;
 
           expect(
@@ -14390,7 +14390,7 @@ void main() {
 
       final RenderObject renderer = tester.renderObject(find.byType(InputDecorator));
       final Iterable<String> nodeNames = renderer.debugDescribeChildren().map(
-        (DiagnosticsNode node) => node.name!,
+        (DiagnosticsNode node) => node.name,
       );
       expect(
         nodeNames,
@@ -14410,7 +14410,7 @@ void main() {
       );
 
       final nodeValues = Set<Object>.of(
-        renderer.debugDescribeChildren().map<Object>((DiagnosticsNode node) => node.value!),
+        renderer.debugDescribeChildren().map<Object>((DiagnosticsNode node) => node.value),
       );
       expect(nodeValues.length, 11);
     });
@@ -14668,7 +14668,7 @@ void main() {
         hoverColor.withAlpha(0),
         hoverColor,
         _getHoverAnimation(tester).value,
-      )!;
+      );
       expect(getContainerColor(tester), isSameColorAs(Color.alphaBlend(midHoverColor, fillColor)));
 
       await pumpDecorator(hovering: false, enabled: false);

@@ -182,12 +182,12 @@ void main() {
       ShapeBorder.lerp(stadium, circle, 0.1).hashCode,
     );
 
-    final ShapeBorder direct50 = ShapeBorder.lerp(stadium, circle, 0.5)!;
+    final ShapeBorder direct50 = ShapeBorder.lerp(stadium, circle, 0.5);
     final ShapeBorder indirect50 = ShapeBorder.lerp(
       ShapeBorder.lerp(circle, stadium, 0.1),
       ShapeBorder.lerp(circle, stadium, 0.9),
       0.5,
-    )!;
+    );
     expect(direct50, indirect50);
     expect(direct50.hashCode, indirect50.hashCode);
     expect(direct50.toString(), indirect50.toString());
@@ -316,12 +316,12 @@ void main() {
       ShapeBorder.lerp(stadium, rrect, 0.1).hashCode,
     );
 
-    final ShapeBorder direct50 = ShapeBorder.lerp(stadium, rrect, 0.5)!;
+    final ShapeBorder direct50 = ShapeBorder.lerp(stadium, rrect, 0.5);
     final ShapeBorder indirect50 = ShapeBorder.lerp(
       ShapeBorder.lerp(rrect, stadium, 0.1),
       ShapeBorder.lerp(rrect, stadium, 0.9),
       0.5,
-    )!;
+    );
     expect(direct50, indirect50);
     expect(direct50.hashCode, indirect50.hashCode);
     expect(direct50.toString(), indirect50.toString());
@@ -450,12 +450,12 @@ void main() {
       ShapeBorder.lerp(stadium, rrect, 0.1).hashCode,
     );
 
-    final ShapeBorder direct50 = ShapeBorder.lerp(stadium, rrect, 0.5)!;
+    final ShapeBorder direct50 = ShapeBorder.lerp(stadium, rrect, 0.5);
     final ShapeBorder indirect50 = ShapeBorder.lerp(
       ShapeBorder.lerp(rrect, stadium, 0.1),
       ShapeBorder.lerp(rrect, stadium, 0.9),
       0.5,
-    )!;
+    );
     expect(direct50, indirect50);
     expect(direct50.hashCode, indirect50.hashCode);
     expect(direct50.toString(), indirect50.toString());
@@ -632,12 +632,12 @@ void main() {
       ShapeBorder.lerp(stadium, rrect, 0.1).hashCode,
     );
 
-    final ShapeBorder direct50 = ShapeBorder.lerp(stadium, rrect, 0.5)!;
+    final ShapeBorder direct50 = ShapeBorder.lerp(stadium, rrect, 0.5);
     final ShapeBorder indirect50 = ShapeBorder.lerp(
       ShapeBorder.lerp(rrect, stadium, 0.1),
       ShapeBorder.lerp(rrect, stadium, 0.9),
       0.5,
-    )!;
+    );
     expect(direct50, indirect50);
     expect(direct50.hashCode, indirect50.hashCode);
     expect(direct50.toString(), indirect50.toString());

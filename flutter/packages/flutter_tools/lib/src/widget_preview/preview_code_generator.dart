@@ -250,7 +250,7 @@ class PreviewCodeGenerator {
 
 extension on DartObject {
   cb.Expression toExpression() {
-    final DartType type = this.type!;
+    final DartType type = this.type;
     return switch (type) {
       DartType(isDartCoreBool: true) => cb.literalBool(toBoolValue()!),
       DartType(isDartCoreDouble: true) => cb.literalNum(toDoubleValue()!),
@@ -259,7 +259,7 @@ extension on DartObject {
       DartType(isDartCoreNull: true) => cb.literalNull,
       InterfaceType(element: EnumElement()) => _createEnumInstance(this),
       InterfaceType() => _createInstance(type, this),
-      FunctionType() => _createTearoff(toFunctionValue()!),
+      FunctionType() => _createTearoff(toFunctionValue()),
       _ => throw UnsupportedError('Unexpected DartObject type: $runtimeType'),
     };
   }
@@ -269,7 +269,7 @@ extension on DartObject {
   }
 
   cb.Expression _createEnumInstance(DartObject object) {
-    final VariableElement variable = object.variable!;
+    final VariableElement variable = object.variable;
     return switch (variable) {
       FieldElement(
         isEnumConstant: true,
@@ -286,7 +286,7 @@ extension on DartObject {
   }
 
   cb.Expression _createInstance(InterfaceType dartType, DartObject object) {
-    final ConstructorInvocation constructorInvocation = object.constructorInvocation!;
+    final ConstructorInvocation constructorInvocation = object.constructorInvocation;
     final ConstructorElement constructor = constructorInvocation.constructor;
     final cb.Expression type = cb.refer(
       dartType.element.name!,

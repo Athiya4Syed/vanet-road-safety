@@ -12,7 +12,7 @@ typedef _PreviewDetailsMatcherMismatchPair = ({Object? expected, Object? actual}
 extension on DartObject {
   /// Climbs the object's class hierarchy, returning the first field matching [name].
   DartObject? getFirstField(String name) {
-    DartObject? annotation = this;
+    var annotation = this;
     while (annotation != null) {
       final DartObject? field = annotation.getField(name);
       if (field != null) {

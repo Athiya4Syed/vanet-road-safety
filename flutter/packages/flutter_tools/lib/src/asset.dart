@@ -510,7 +510,7 @@ class ManifestAssetBundle implements AssetBundle {
       }
     }
     for (final HookAsset dataAsset in flutterHookResult?.dataAssets ?? <HookAsset>[]) {
-      final Package package = packageConfig[dataAsset.package]!;
+      final Package package = packageConfig[dataAsset.package];
       final Uri fileUri = dataAsset.file;
 
       final String filePath = fileUri.toFilePath();

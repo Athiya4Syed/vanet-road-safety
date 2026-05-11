@@ -85,7 +85,7 @@ void main() {
   }
 
   TextEditingController textFieldController(WidgetTester tester) {
-    return textField(tester).controller!;
+    return textField(tester).controller;
   }
 
   double textOpacity(WidgetTester tester, String textValue) {
@@ -541,7 +541,7 @@ void main() {
       ),
     );
 
-    final InputDecoration decoration = tester.widget<TextField>(find.byType(TextField)).decoration!;
+    final InputDecoration decoration = tester.widget<TextField>(find.byType(TextField)).decoration;
     expect(decoration.filled, isTrue);
   });
 }

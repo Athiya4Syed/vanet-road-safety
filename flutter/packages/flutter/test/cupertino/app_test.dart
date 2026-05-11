@@ -620,7 +620,7 @@ void main() {
 
       root.visitChildren(recursiveFinder);
       expect(renderEditable, isNotNull);
-      return renderEditable!;
+      return renderEditable;
     }
 
     final focusNode = FocusNode();
@@ -648,7 +648,7 @@ void main() {
     );
 
     final RenderEditable editableText = findRenderEditable(tester);
-    final Color cursorColor = editableText.cursorColor!;
+    final Color cursorColor = editableText.cursorColor;
 
     // Cursor color should be equal to the dark variant of the primary color.
     // Alpha value needs to be 0, because cursor is not visible by default.

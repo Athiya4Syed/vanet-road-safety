@@ -307,7 +307,7 @@ void main() {
         AnnotatedRegionLayer<int>(index++, size: const Size(100.0, 100.0)),
         AnnotatedRegionLayer<int>(index++, size: const Size(100.0, 100.0)),
       ];
-      for (final ContainerLayer layer in layers) {
+      for (final layer in layers) {
         final annotatedRegionLayer = AnnotatedRegionLayer<int>(
           index++,
           size: const Size(100.0, 100.0),

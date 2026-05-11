@@ -226,7 +226,7 @@ class _AllSectionsLayout extends MultiChildLayoutDelegate {
       final double centeredRowTitleX = rowTitleX + (rowTitleWidth - titleSize.width) / 2.0;
       final columnTitleOrigin = Offset(columnTitleX, columnTitleY);
       final rowTitleOrigin = Offset(centeredRowTitleX, rowTitleY);
-      final Offset titleOrigin = _interpolatePoint(columnTitleOrigin, rowTitleOrigin)!;
+      final Offset titleOrigin = _interpolatePoint(columnTitleOrigin, rowTitleOrigin);
       positionChild('title$index', titleOrigin + offset);
 
       // Layout the selection indicator for index.
@@ -242,7 +242,7 @@ class _AllSectionsLayout extends MultiChildLayoutDelegate {
           rowIndicatorX + (rowIndicatorWidth - indicatorSize.width) / 2.0;
       final double rowIndicatorY = titleRect.bottomCenter.dy + 16.0;
       final rowIndicatorOrigin = Offset(centeredRowIndicatorX, rowIndicatorY);
-      final Offset indicatorOrigin = _interpolatePoint(columnIndicatorOrigin, rowIndicatorOrigin)!;
+      final Offset indicatorOrigin = _interpolatePoint(columnIndicatorOrigin, rowIndicatorOrigin);
       positionChild('indicator$index', indicatorOrigin + offset);
 
       columnCardY += columnCardHeight;
@@ -469,7 +469,7 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome> {
   // Paging is enabled/disabled by setting the heading's PageView scroll physics.
   bool _handleScrollNotification(ScrollNotification notification, double midScrollOffset) {
     if (notification.depth == 0 && notification is ScrollUpdateNotification) {
-      final ScrollPhysics physics = _scrollController.position.pixels >= midScrollOffset
+      final physics = _scrollController.position.pixels >= midScrollOffset
           ? const PageScrollPhysics()
           : const NeverScrollableScrollPhysics();
       if (physics != _headingScrollPhysics) {

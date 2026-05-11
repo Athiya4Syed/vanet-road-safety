@@ -161,7 +161,7 @@ void main() {
               }),
             ),
           )
-          .child!;
+          .child;
     }
 
     final scaffoldKey = GlobalKey<ScaffoldState>();

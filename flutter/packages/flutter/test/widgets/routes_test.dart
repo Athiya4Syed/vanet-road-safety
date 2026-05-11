@@ -136,7 +136,7 @@ void main() {
         child: Navigator(key: navigatorKey, onGenerateRoute: (_) => TestRoute('initial')),
       ),
     );
-    final NavigatorState host = navigatorKey.currentState!;
+    final NavigatorState host = navigatorKey.currentState;
     await runNavigatorTest(tester, host, () {}, <String>[
       'initial: install',
       'initial: didAdd',
@@ -226,7 +226,7 @@ void main() {
         child: Navigator(key: navigatorKey, onGenerateRoute: (_) => TestRoute('first')),
       ),
     );
-    final NavigatorState host = navigatorKey.currentState!;
+    final NavigatorState host = navigatorKey.currentState;
     await runNavigatorTest(tester, host, () {}, <String>[
       'first: install',
       'first: didAdd',
@@ -324,7 +324,7 @@ void main() {
         child: Navigator(key: navigatorKey, onGenerateRoute: (_) => TestRoute('A')),
       ),
     );
-    final NavigatorState host = navigatorKey.currentState!;
+    final NavigatorState host = navigatorKey.currentState;
     await runNavigatorTest(tester, host, () {}, <String>[
       'A: install',
       'A: didAdd',
@@ -391,7 +391,7 @@ void main() {
         child: Navigator(key: navigatorKey, onGenerateRoute: (_) => routeA),
       ),
     );
-    final NavigatorState host = navigatorKey.currentState!;
+    final NavigatorState host = navigatorKey.currentState;
     await runNavigatorTest(
       tester,
       host,
@@ -3000,7 +3000,7 @@ class WidgetWithLocalHistoryState extends State<WidgetWithLocalHistory> {
   late LocalHistoryEntry _localHistory;
 
   void addLocalHistory() {
-    final ModalRoute<dynamic> route = ModalRoute.of(context)!;
+    final ModalRoute<dynamic> route = ModalRoute.of(context);
     _localHistory = LocalHistoryEntry();
     route.addLocalHistoryEntry(_localHistory);
   }

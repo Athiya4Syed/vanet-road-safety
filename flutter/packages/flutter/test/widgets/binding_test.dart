@@ -225,7 +225,7 @@ void main() {
     WidgetsBinding.instance.addObserver(observer);
     final ByteData message = const JSONMessageCodec().encodeMessage(<String, dynamic>{
       'type': 'memoryPressure',
-    })!;
+    });
     await tester.binding.defaultBinaryMessenger.handlePlatformMessage(
       'flutter/system',
       message,
@@ -320,7 +320,7 @@ void main() {
       'flutter/navigation',
       message,
       (_) {},
-    ))!;
+    ));
     final decodedResult = const JSONMethodCodec().decodeEnvelope(result) as bool;
 
     expect(decodedResult, true);
@@ -345,7 +345,7 @@ void main() {
       'flutter/navigation',
       message,
       (_) {},
-    ))!;
+    ));
     final decodedResult = const JSONMethodCodec().decodeEnvelope(result) as bool;
 
     expect(decodedResult, true);
@@ -467,7 +467,7 @@ void main() {
       'flutter/navigation',
       message,
       (_) {},
-    ))!;
+    ));
     final decodedResult = const JSONMethodCodec().decodeEnvelope(result) as bool;
 
     expect(decodedResult, false);
@@ -483,7 +483,7 @@ void main() {
       'flutter/navigation',
       message,
       (_) {},
-    ))!;
+    ));
     final decodedResult = const JSONMethodCodec().decodeEnvelope(result) as bool;
 
     expect(decodedResult, false);
@@ -496,7 +496,7 @@ void main() {
       'flutter/navigation',
       message,
       (_) {},
-    ))!;
+    ));
     final decodedResult = const JSONMethodCodec().decodeEnvelope(result) as bool;
 
     expect(decodedResult, false);

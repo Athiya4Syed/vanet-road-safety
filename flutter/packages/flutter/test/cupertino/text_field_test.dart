@@ -205,7 +205,7 @@ void main() {
 
     root.visitChildren(recursiveFinder);
     expect(renderEditable, isNotNull);
-    return renderEditable!;
+    return renderEditable;
   }
 
   List<TextSelectionPoint> globalize(Iterable<TextSelectionPoint> points, RenderBox box) {
@@ -537,7 +537,7 @@ void main() {
     'Activates the text field when receives semantics focus on desktops',
     (WidgetTester tester) async {
       final semantics = SemanticsTester(tester);
-      final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner!;
+      final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner;
       final focusNode = FocusNode();
       addTearDown(focusNode.dispose);
       await tester.pumpWidget(CupertinoApp(home: CupertinoTextField(focusNode: focusNode)));
@@ -10564,7 +10564,7 @@ void main() {
     WidgetTester tester,
   ) async {
     final semantics = SemanticsTester(tester);
-    final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner!;
+    final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner;
     final focusNode = FocusNode();
     addTearDown(focusNode.dispose);
     await tester.pumpWidget(CupertinoApp(home: CupertinoTextField(focusNode: focusNode)));
@@ -10629,7 +10629,7 @@ void main() {
     'when disabled does not listen to onFocus events or gain focus',
     (WidgetTester tester) async {
       final semantics = SemanticsTester(tester);
-      final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner!;
+      final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner;
       final focusNode = FocusNode();
       addTearDown(focusNode.dispose);
       await tester.pumpWidget(
@@ -10696,7 +10696,7 @@ void main() {
     'when receives SemanticsAction.focus while already focused, shows keyboard',
     (WidgetTester tester) async {
       final semantics = SemanticsTester(tester);
-      final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner!;
+      final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner;
       final focusNode = FocusNode();
       addTearDown(focusNode.dispose);
       await tester.pumpWidget(CupertinoApp(home: CupertinoTextField(focusNode: focusNode)));
@@ -10719,7 +10719,7 @@ void main() {
     'when receives SemanticsAction.focus while focused but read-only, does not show keyboard',
     (WidgetTester tester) async {
       final semantics = SemanticsTester(tester);
-      final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner!;
+      final SemanticsOwner semanticsOwner = tester.binding.pipelineOwner.semanticsOwner;
       final focusNode = FocusNode();
       addTearDown(focusNode.dispose);
       await tester.pumpWidget(

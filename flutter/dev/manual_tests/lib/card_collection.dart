@@ -240,19 +240,19 @@ class CardCollectionState extends State<CardCollection> {
 
   void _selectColor(MaterialColor? selection) {
     setState(() {
-      _primaryColor = selection!;
+      _primaryColor = selection;
     });
   }
 
   void _changeDismissDirection(DismissDirection? newDismissDirection) {
     setState(() {
-      _dismissDirection = newDismissDirection!;
+      _dismissDirection = newDismissDirection;
     });
   }
 
   void _changeTextAlign(TextAlign? newTextAlign) {
     setState(() {
-      _textAlign = newTextAlign!;
+      _textAlign = newTextAlign;
     });
   }
 
@@ -411,13 +411,13 @@ class CardCollectionState extends State<CardCollection> {
     }
 
     // This icon is wrong in RTL.
-    Widget leftArrowIcon = const Icon(Icons.arrow_back, size: 36.0);
+    var leftArrowIcon = const Icon(Icons.arrow_back, size: 36.0);
     if (_dismissDirection == DismissDirection.startToEnd) {
       leftArrowIcon = Opacity(opacity: 0.1, child: leftArrowIcon);
     }
 
     // This icon is wrong in RTL.
-    Widget rightArrowIcon = const Icon(Icons.arrow_forward, size: 36.0);
+    var rightArrowIcon = const Icon(Icons.arrow_forward, size: 36.0);
     if (_dismissDirection == DismissDirection.endToStart) {
       rightArrowIcon = Opacity(opacity: 0.1, child: rightArrowIcon);
     }
