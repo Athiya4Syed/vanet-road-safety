@@ -75,6 +75,21 @@ class _YoloDetectionScreenState extends State<YoloDetectionScreen> {
     );
   }
 
+  Color _getSeverityColor(String severity) {
+    switch (severity.toUpperCase()) {
+      case 'LOW':
+        return Colors.green;
+      case 'MEDIUM':
+        return Colors.orange;
+      case 'HIGH':
+        return Colors.red;
+      case 'CRITICAL':
+        return Colors.purple;
+      default:
+        return Colors.grey;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
