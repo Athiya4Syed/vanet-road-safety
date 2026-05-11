@@ -96,17 +96,21 @@ async def detect_and_report(
         contents = await file.read()
         image = Image.open(io.BytesIO(contents))
 
-        results = model(image, conf=0.25)
+        results = model(image, conf=0.01)  # Very low confidence
 
-        pothole_detected = False
-        confidence = 0.0
+pothole_detected = False
+confidence = 0.0
 
-        for result in results:
-            boxes = result.boxes
-            if boxes is not None and len(boxes) > 0:
-                pothole_detected = True
-                confidence = float(boxes.conf.max())
+for result in results:
+    # Check both boxes and masks
+    if result.boxes is not None and len(result.boxes) > 0:
+        pothole_detected = True
+        confidence = float(result.boxes.conf.max())
+    elif hasattr(result, 'masks') and result.masks is not None:
+        pothole_detected = True
+        confidence = 0.5
 
+        
         severity = "LOW"
         if confidence > 0.8: severity = "CRITICAL"
         elif confidence > 0.6: severity = "HIGH"

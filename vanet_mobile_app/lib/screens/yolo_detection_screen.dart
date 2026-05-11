@@ -17,6 +17,22 @@ class _YoloDetectionScreenState extends State<YoloDetectionScreen> {
   Map<String, dynamic>? _result;
   final ImagePicker _picker = ImagePicker();
 
+  // ✅ Method in correct class
+  Color _getSeverityColor(String severity) {
+    switch (severity.toUpperCase()) {
+      case 'LOW':
+        return Colors.green;
+      case 'MEDIUM':
+        return Colors.orange;
+      case 'HIGH':
+        return Colors.red;
+      case 'CRITICAL':
+        return Colors.purple;
+      default:
+        return Colors.grey;
+    }
+  }
+
   Future<void> _pickImage() async {
     final XFile? image = await _picker.pickImage(
       source: ImageSource.gallery,
@@ -33,46 +49,43 @@ class _YoloDetectionScreenState extends State<YoloDetectionScreen> {
   }
 
   Future<void> _detectPothole() async {
-  if (_imageBytes == null) {
+    if (_imageBytes == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please select an image first')),
+      );
+      return;
+    }
+
+    setState(() => _isDetecting = true);
+
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Please select an image first')),
-    );
-    return;
-  }
-
-  setState(() => _isDetecting = true);
-
-  // Show waiting message
-  ScaffoldMessenger.of(context).showSnackBar(
-    const SnackBar(
-      content: Text('⏳ Waking up AI server... please wait 30 seconds'),
-      duration: Duration(seconds: 30),
-      backgroundColor: Colors.orange,
-    ),
-  );
-
-  try {
-    final result = await ApiService.detectPothole(
-      imageBytes: _imageBytes!,
-      latitude: 15.2968,
-      longitude: 75.6250,
-    );
-
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    setState(() => _result = result);
-
-  } catch (e) {
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('❌ Error: $e'),
-        backgroundColor: Colors.red,
+      const SnackBar(
+        content: Text('⏳ Waking up AI server... please wait 30 seconds'),
+        duration: Duration(seconds: 30),
+        backgroundColor: Colors.orange,
       ),
     );
-  } finally {
-    setState(() => _isDetecting = false);
+
+    try {
+      final result = await ApiService.detectPothole(
+        imageBytes: _imageBytes!,
+        latitude: 15.2968,
+        longitude: 75.6250,
+      );
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      setState(() => _result = result);
+    } catch (e) {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('❌ Error: $e'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } finally {
+      setState(() => _isDetecting = false);
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +103,6 @@ class _YoloDetectionScreenState extends State<YoloDetectionScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Info Card
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
@@ -107,18 +119,13 @@ class _YoloDetectionScreenState extends State<YoloDetectionScreen> {
                   Expanded(
                     child: Text(
                       'Upload a road image and YOLOv8 AI will automatically detect potholes!',
-                      style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 13,
-                      ),
+                      style: TextStyle(color: Colors.white70, fontSize: 13),
                     ),
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 24),
-
-            // Image Preview
             GestureDetector(
               onTap: _pickImage,
               child: Container(
@@ -132,43 +139,29 @@ class _YoloDetectionScreenState extends State<YoloDetectionScreen> {
                 child: _imageBytes != null
                     ? ClipRRect(
                         borderRadius: BorderRadius.circular(20),
-                        child: Image.memory(
-                          _imageBytes!,
-                          fit: BoxFit.cover,
-                        ),
+                        child: Image.memory(_imageBytes!, fit: BoxFit.cover),
                       )
                     : Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
-                            Icons.add_photo_alternate_outlined,
-                            color: Colors.grey.shade600,
-                            size: 60,
-                          ),
+                          Icon(Icons.add_photo_alternate_outlined,
+                              color: Colors.grey.shade600, size: 60),
                           const SizedBox(height: 12),
-                          Text(
-                            'Tap to select image',
-                            style: TextStyle(
-                              color: Colors.grey.shade600,
-                              fontSize: 14,
-                            ),
-                          ),
+                          Text('Tap to select image',
+                              style: TextStyle(
+                                  color: Colors.grey.shade600, fontSize: 14)),
                         ],
                       ),
               ),
             ),
             const SizedBox(height: 16),
-
-            // Pick Image Button
             SizedBox(
               width: double.infinity,
               height: 50,
               child: ElevatedButton.icon(
                 icon: const Icon(Icons.photo_library, color: Colors.white),
-                label: const Text(
-                  'Select Image from Gallery',
-                  style: TextStyle(color: Colors.white),
-                ),
+                label: const Text('Select Image from Gallery',
+                    style: TextStyle(color: Colors.white)),
                 onPressed: _pickImage,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF1D1E33),
@@ -180,8 +173,6 @@ class _YoloDetectionScreenState extends State<YoloDetectionScreen> {
               ),
             ),
             const SizedBox(height: 12),
-
-            // Detect Button
             SizedBox(
               width: double.infinity,
               height: 55,
@@ -191,40 +182,31 @@ class _YoloDetectionScreenState extends State<YoloDetectionScreen> {
                         width: 20,
                         height: 20,
                         child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          color: Colors.white,
-                        ),
+                            strokeWidth: 2, color: Colors.white),
                       )
                     : const Icon(Icons.search, color: Colors.white),
                 label: Text(
                   _isDetecting ? 'Detecting...' : '🤖 Detect Pothole',
                   style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold),
                 ),
                 onPressed: _isDetecting ? null : _detectPothole,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF1E88E5),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
-                  ),
+                      borderRadius: BorderRadius.circular(14)),
                 ),
               ),
             ),
             const SizedBox(height: 24),
-
-            // Result
             if (_result != null) ...[
-              const Text(
-                'Detection Result',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              const Text('Detection Result',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold)),
               const SizedBox(height: 12),
               Container(
                 padding: const EdgeInsets.all(20),
@@ -267,13 +249,9 @@ class _YoloDetectionScreenState extends State<YoloDetectionScreen> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              Text(
-                                _result!['message'] ?? '',
-                                style: const TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 13,
-                                ),
-                              ),
+                              Text(_result!['message'] ?? '',
+                                  style: const TextStyle(
+                                      color: Colors.grey, fontSize: 13)),
                             ],
                           ),
                         ),

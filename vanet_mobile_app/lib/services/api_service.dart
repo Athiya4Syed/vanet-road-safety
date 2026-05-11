@@ -6,7 +6,7 @@ import '../models/pothole_model.dart';
 class ApiService {
   static const String backendUrl =
       'https://vanet-road-safety.onrender.com/api/vanet';
-  static const String yoloUrl = 'https://vanet-yolo-service.onrender.com';
+  static const String yoloUrl = 'http://localhost:8000';
 
   // Wake up server
   static Future<void> wakeUpServer() async {
