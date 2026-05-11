@@ -5,7 +5,6 @@ import io
 import uvicorn
 import os
 import requests as req
-import base64
 from ultralytics import YOLO
 
 app = FastAPI(title="VANET YOLOv8 Pothole Detection")
@@ -17,9 +16,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Load custom trained model
 def load_model():
     paths = [
+        'best.pt',
         'runs/detect/pothole_custom/weights/best.pt',
         'runs/detect/pothole_custom-1/weights/best.pt',
         'runs/detect/pothole_custom-2/weights/best.pt',
@@ -58,22 +57,23 @@ async def detect_pothole(file: UploadFile = File(...)):
     try:
         contents = await file.read()
         image = Image.open(io.BytesIO(contents))
-
-        results = model(image, conf=0.25)
+        results = model(image, conf=0.01)
 
         pothole_detected = False
         confidence = 0.0
 
         for result in results:
-            boxes = result.boxes
-            if boxes is not None and len(boxes) > 0:
+            if result.boxes is not None and len(result.boxes) > 0:
                 pothole_detected = True
-                confidence = float(boxes.conf.max())
+                confidence = float(result.boxes.conf.max())
 
         severity = "LOW"
-        if confidence > 0.8: severity = "CRITICAL"
-        elif confidence > 0.6: severity = "HIGH"
-        elif confidence > 0.4: severity = "MEDIUM"
+        if confidence > 0.8:
+            severity = "CRITICAL"
+        elif confidence > 0.6:
+            severity = "HIGH"
+        elif confidence > 0.4:
+            severity = "MEDIUM"
 
         return {
             "pothole_detected": pothole_detected,
@@ -95,26 +95,23 @@ async def detect_and_report(
     try:
         contents = await file.read()
         image = Image.open(io.BytesIO(contents))
+        results = model(image, conf=0.01)
 
-        results = model(image, conf=0.01)  # Very low confidence
+        pothole_detected = False
+        confidence = 0.0
 
-pothole_detected = False
-confidence = 0.0
+        for result in results:
+            if result.boxes is not None and len(result.boxes) > 0:
+                pothole_detected = True
+                confidence = float(result.boxes.conf.max())
 
-for result in results:
-    # Check both boxes and masks
-    if result.boxes is not None and len(result.boxes) > 0:
-        pothole_detected = True
-        confidence = float(result.boxes.conf.max())
-    elif hasattr(result, 'masks') and result.masks is not None:
-        pothole_detected = True
-        confidence = 0.5
-
-        
         severity = "LOW"
-        if confidence > 0.8: severity = "CRITICAL"
-        elif confidence > 0.6: severity = "HIGH"
-        elif confidence > 0.4: severity = "MEDIUM"
+        if confidence > 0.8:
+            severity = "CRITICAL"
+        elif confidence > 0.6:
+            severity = "HIGH"
+        elif confidence > 0.4:
+            severity = "MEDIUM"
 
         reported = False
         if pothole_detected:
@@ -135,7 +132,7 @@ for result in results:
                     timeout=30
                 )
                 reported = response.status_code == 200
-            except:
+            except Exception:
                 reported = False
 
         return {
@@ -143,7 +140,7 @@ for result in results:
             "confidence": confidence,
             "severity": severity,
             "auto_reported": reported,
-            "message": f"Pothole detected!" if pothole_detected else "No pothole detected"
+            "message": "Pothole detected!" if pothole_detected else "No pothole detected"
         }
 
     except Exception as e:
